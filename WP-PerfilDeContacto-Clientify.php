@@ -24,12 +24,15 @@ define("CLIENTIFY_API_URL", "https://api.clientify.net/v1");
 define("CLIENTIFY_LOG_API_CALLS", false);
 define('CLIENTIFY_API_KEY', get_option("_wp_pcc_clientify_api_key"));
 define('WP_AED_ASOCIADAS_CACHE_FILE', plugin_dir_path(__FILE__).'cache/asociadas.json');
+define('WP_AED_HASH', "EVAMARIASEFUE");
+define('WP_AED_ASOCIADAS_TAGS', "asociadas");
 
 
 define('WP_AED_ASOCIADA_PAGE_ID', 696);
 
 //Cargamos resto de script
 require __DIR__ . '/admin.php';
+require __DIR__ . '/login.php';
 require __DIR__ . '/shortcodes.php';
 
 //Cargamos el multi-idioma
@@ -99,7 +102,7 @@ function wp_pcc_asociada_cache() {
   if(!file_exists(WP_AED_ASOCIADAS_CACHE_FILE) || (time() - filemtime(WP_AED_ASOCIADAS_CACHE_FILE)) > /*(60*4)*/ 5) {
     $asociadas = [];
     $max = 100;
-    $link = CLIENTIFY_API_URL."/contacts/?tag=asociadas&page_size=".$max;
+    $link = CLIENTIFY_API_URL."/contacts/?tag=".WP_AED_ASOCIADAS_TAGS."&page_size=".$max;
     while(1 == 1) {
       $curl = curl_init();
       echo $link."<br>";
