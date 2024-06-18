@@ -101,6 +101,7 @@ function wp_pcc_asociada_permalink($asociada) {
 add_action( 'wp_ajax_asociadas', 'wp_pcc_asociada_cache' );
 add_action( 'wp_ajax_nopriv_asociadas', 'wp_pcc_asociada_cache' );
 function wp_pcc_asociada_cache() {
+  header('Content-Type: application/json; charset=utf-8');
   if(!file_exists(WP_AED_ASOCIADAS_CACHE_FILE) || (time() - filemtime(WP_AED_ASOCIADAS_CACHE_FILE)) > /*(60*4)*/ 5) {
     $asociadas = [];
     $max = 100;
@@ -132,6 +133,7 @@ function wp_pcc_asociada_cache() {
     echo json_encode($asociadas);
   } else {
     $json = file_get_contents(WP_AED_ASOCIADAS_CACHE_FILE);
+
     echo $json;
   }
 }

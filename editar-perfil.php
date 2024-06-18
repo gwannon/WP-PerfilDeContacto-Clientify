@@ -34,13 +34,25 @@ function wp_pcc_edit_profile($params = array(), $content = null) {
       if(isset($_POST['clientify_lastname']) && $_POST['clientify_lastname'] != '') $asociada->setLastName($_POST['clientify_lastname']);
       if(isset($_POST['clientify_company']) && $_POST['clientify_company'] != '') $asociada->setCustomField('Asociadas_Empresa', $_POST['clientify_company']);
       if(isset($_POST['clientify_cv']) && $_POST['clientify_cv'] != '') $asociada->setCustomField('Asociadas_CV', $_POST['clientify_cv']);
-      $asociada->update(); ?>
+
+
+      $dir_subida = plugin_dir_path(__FILE__).'cache/pictures/';
+      $file_name = sanitize_title("asociada-".$asociada->id).".png";
+      $fichero_subido = $dir_subida . $file_name ;
+      if (move_uploaded_file($_FILES['clientify_picture']['tmp_name'], $fichero_subido)) {
+        $picture_url = plugin_dir_url(__FILE__).'cache/pictures/'.$file_name;
+        $asociada->setPicture($picture_url);
+      }
+
+
+
+      $asociada->update();
+      //if(file_exists($fichero_subido)) unlink($fichero_subido); ?>
       <script>
         jQuery.get( "/wp-admin/admin-ajax.php?action=asociadas", function( data ) {
           console.log("Load was performed." );
         });
       </script>
-
     <?php }
     if(wp_pcc_user_hash($asociada) == $hash) { 
       $company = $asociada->getCustomField('Asociadas_Empresa');
@@ -49,12 +61,13 @@ function wp_pcc_edit_profile($params = array(), $content = null) {
       <a href="<?=get_the_permalink(WP_AED_ASOCIADA_EDIT_PROFILE_ID);?>?wp-pcc-date=<?=date("YmdHis");?>&logoutAsociadas=Desconectar"><?php _e("Desconectar", 'wp-perfil-contacto'); ?></a> | 
       <a href="<?=wp_pcc_asociada_permalink($asociada);?>?wp-pcc-date=<?=date("YmdHis");?>"><?php _e("Ver mi perfil", 'wp-perfil-contacto'); ?></a>
       
-      <form method="post">
+      <form method="post" enctype="multipart/form-data">
         <label><?php _e("Nombre", 'wp-perfil-contacto'); ?> <input type="text" name="clientify_firstname" autocomplete="off" value="<?=$asociada->getFirstName()?>" required/></label><br/>
         <label><?php _e("Apellidos", 'wp-perfil-contacto'); ?> <input type="text" name="clientify_lastname" autocomplete="off" value="<?=$asociada->getLastName()?>" required/></label><br/>
         <label><?php _e("Empresa", 'wp-perfil-contacto'); ?> <input type="text" name="clientify_company" autocomplete="off" value="<?=(isset($company['value']) ? $company['value'] : '')?>" required/></label><br/>
         <label><?php _e("Curriculum Vitae", 'wp-perfil-contacto'); ?>
         <?php wp_editor((isset($cv['value']) ? $cv['value'] : ''), "clientify_cv", array( 'media_buttons' => false ) ); ?></label><br/>
+        <label><?php _e("Imagen (máximo 2mg)", 'wp-perfil-contacto'); ?> <input name="clientify_picture" max-size="2000" type="file" accept="image/png, image/gif, image/jpeg" /></label>
         <input type="submit" name="updateAsociada" value="<?php _e("Guardar", 'wp-perfil-contacto'); ?>">
       </form>
       <?php return ob_get_clean();
