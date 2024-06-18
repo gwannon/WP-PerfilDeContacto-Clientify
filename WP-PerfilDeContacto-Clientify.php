@@ -92,7 +92,8 @@ function wp_pcc_asociada_404( $template ) {
 }
 
 function wp_pcc_asociada_permalink($asociada) {
-  return get_permalink(WP_AED_ASOCIADA_PAGE_ID).sanitize_title($asociada->first_name."-".$asociada->last_name."-".$asociada->id)."/";
+  if(isset($asociada->first_name)) return get_permalink(WP_AED_ASOCIADA_PAGE_ID).sanitize_title($asociada->first_name."-".$asociada->last_name."-".$asociada->id)."/";
+  else return get_permalink(WP_AED_ASOCIADA_PAGE_ID).sanitize_title($asociada->getFirstName()."-".$asociada->getLastName()."-".$asociada->id)."/";
 }
 
 /* ----------- Cron job ------------ */

@@ -46,7 +46,9 @@ function wp_pcc_edit_profile($params = array(), $content = null) {
       $company = $asociada->getCustomField('Asociadas_Empresa');
       $cv = $asociada->getCustomField('Asociadas_CV');
       ?><h1><?php _e("Editor de mi perfil", 'wp-perfil-contacto'); ?></h1>
-      <a href="<?=get_the_permalink(WP_AED_ASOCIADA_EDIT_PROFILE_ID);?>?wp-pcc-date=<?=date("YmdHis");?>&logoutAsociadas=Desconectar"><?php _e("Desconectar", 'wp-perfil-contacto'); ?></a>
+      <a href="<?=get_the_permalink(WP_AED_ASOCIADA_EDIT_PROFILE_ID);?>?wp-pcc-date=<?=date("YmdHis");?>&logoutAsociadas=Desconectar"><?php _e("Desconectar", 'wp-perfil-contacto'); ?></a> | 
+      <a href="<?=wp_pcc_asociada_permalink($asociada);?>?wp-pcc-date=<?=date("YmdHis");?>"><?php _e("Ver mi perfil", 'wp-perfil-contacto'); ?></a>
+      
       <form method="post">
         <label><?php _e("Nombre", 'wp-perfil-contacto'); ?> <input type="text" name="clientify_firstname" autocomplete="off" value="<?=$asociada->getFirstName()?>" required/></label><br/>
         <label><?php _e("Apellidos", 'wp-perfil-contacto'); ?> <input type="text" name="clientify_lastname" autocomplete="off" value="<?=$asociada->getLastName()?>" required/></label><br/>
