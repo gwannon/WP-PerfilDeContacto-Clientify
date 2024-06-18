@@ -9,9 +9,10 @@ function wp_pcc_listado_asociadas_shortcode($params = array(), $content = null) 
   <ol>
   <?php
   foreach ($asociadas as $asociada) {
-    echo "<li><b><a href='".wp_pcc_asociada_permalink($asociada)."/'>".$asociada->first_name." ".$asociada->last_name."</a></b>".
-      (isset($asociada->company_name) && $asociada->company_name != '' ? "<br>".$asociada->company_name : "").
-      "</li>";
+    echo "<li><b><a href='".wp_pcc_asociada_permalink($asociada)."/'>".$asociada->first_name." ".$asociada->last_name."</a></b>";
+    $key = array_search('Asociadas_Empresa', array_column(json_decode(json_encode($asociada->custom_fields), true), 'field'));
+    echo (isset($asociada->custom_fields[$key]->field) && $asociada->custom_fields[$key]->field == 'Asociadas_Empresa' && isset($asociada->custom_fields[$key]->value) && $asociada->custom_fields[$key]->value != '' ? "<br>".$asociada->custom_fields[$key]->value : "");
+    echo "</li>";
   } ?>
   </ol>
   <?php return ob_get_clean();
@@ -22,15 +23,15 @@ add_shortcode('listado-asociadas', 'wp_pcc_listado_asociadas_shortcode');
 function wp_pcc_asociada_shortcode($params = array(), $content = null) {
     ob_start();
     $asociada_id= end(explode("-", get_query_var('asociada'))); 
-    if($asociada_id != '') { ?>
-        
-        <?php $json = json_decode(file_get_contents(WP_AED_ASOCIADAS_CACHE_FILE), true);
-        $asociada = json_decode(json_encode($json[$asociada_id])); ?>
-        <h1><?php the_title(); ?></h1>
+    if($asociada_id != '') { $asociada = new contactClientify($asociada_id); ?>
+        <h1><?php echo $asociada->getFirstName()." ".$asociada->getLastName(); ?></h1>
         <h2><?php _e("Datos de la asociada", 'wp-perfil-contacto'); ?></h2><?php
-        echo (isset($asociada->company_name) && $asociada->company_name != '' ? "<b>Empresa:</b> ".$asociada->company_name."<br/>" : "");
+        $company = $asociada->getCustomField('Asociadas_Empresa');
+        echo (isset($company['value']) && $company['value'] != '' ? "<h3>Empresa:</h3> ".$company['value']."<br/>" : "");
 
-        $asociada = new contactClientify($asociada_id);
+        $cv = $asociada->getCustomField('Asociadas_CV');
+        echo (isset($cv['value']) && $cv['value'] != '' ? "<h3>Mi CV:</h3> ".apply_filters("the_content", $cv['value'])."<br/>" : "");
+
         $emails = $asociada->getEmails();
         if(count($emails)) {
             ?><h3><?php _e("Emails", 'wp-perfil-contacto'); ?></h3><ul><?php

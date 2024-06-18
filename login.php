@@ -4,7 +4,7 @@ use Gwannon\PHPClientifyAPI\contactClientify;
 
 /* wp_pcc_login */
 function wp_pcc_login($params = array(), $content = null) {
-  if(isset($_COOKIE['wpatg'])) return; //Si existe la cookie ni seguimos.
+  if(isset($_COOKIE['wp_pcc'])) return; //Si existe la cookie ni seguimos.
   ob_start();?>
   <div id="wp-pcc-login">
       <form id="wp-pcc-form-login" method="post">
@@ -38,10 +38,9 @@ function wp_pcc_send_login_email($user, $email) {
     "X-Mailer: PHP/".phpversion(),
     "Content-type: text/html; charset=utf-8"
   );
-  $message = str_replace("[LINK]", get_the_permalink()."?wp-pcc-hash=".wp_pcc_user_hash($user)."&wp-pcc-id=".$user->id, file_get_contents(dirname(__FILE__)."/emails/email_login_es.html"));
+  $message = str_replace("[LINK]", get_the_permalink()."?wp-pcc-date=".date("YmdHis")."&wp-pcc-hash=".wp_pcc_user_hash($user)."&wp-pcc-id=".$user->id, file_get_contents(dirname(__FILE__)."/emails/email_login_es.html"));
   $message = str_replace("[URL]", plugin_dir_url(__DIR__), $message);
-  echo $message;
-  wp_mail ($email, __("Aquí puedes actualziar tu perfil de asociada de AED", 'wp-a-tu-gusto'), $message, $headers);
+  wp_mail ($email, __("Aquí puedes actualizar tu perfil de asociada de AED", 'wp-perfil-contacto'), $message, $headers);
 }
 
 function wp_pcc_user_hash($user) {
