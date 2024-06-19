@@ -34,7 +34,8 @@ define('WP_AED_ASOCIADA_EDIT_PROFILE_ID', get_option("_wp_pcc_asociada_edit_prof
 require __DIR__ . '/admin.php';
 require __DIR__ . '/login.php';
 require __DIR__ . '/editar-perfil.php';
-require __DIR__ . '/shortcodes.php';
+require __DIR__ . '/listado.php';
+require __DIR__ . '/perfil.php';
 
 //Cargamos el multi-idioma
 function wp_pcc_plugins_loaded() {
