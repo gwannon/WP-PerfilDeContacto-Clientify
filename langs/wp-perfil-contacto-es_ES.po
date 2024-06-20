@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: wp-perfil-contacto\n"
-"POT-Creation-Date: 2024-06-12 12:36+0200\n"
-"PO-Revision-Date: 2024-06-12 12:38+0200\n"
+"POT-Creation-Date: 2024-06-20 10:58+0200\n"
+"PO-Revision-Date: 2024-06-20 12:39+0200\n"
 "Last-Translator: \n"
 "Language-Team: jorge@enutt.net\n"
 "Language: es_ES\n"
@@ -31,14 +31,138 @@ msgstr ""
 msgid "Datos guardados correctamente"
 msgstr ""
 
-#: ../admin.php:16
+#: ../admin.php:21
 msgid "Configuración Principal"
 msgstr ""
 
-#: ../admin.php:17
+#: ../admin.php:22
 msgid "Clientify API key"
 msgstr ""
 
-#: ../admin.php:19
+#: ../admin.php:24
+msgid "Etiqueta para filtrar contactos"
+msgstr ""
+
+#: ../admin.php:27
+msgid "Texto de encriptación"
+msgstr ""
+
+#: ../admin.php:31
+msgid "ID de la página del perfil de asociada"
+msgstr ""
+
+#: ../admin.php:33
+msgid "ID de la página donde está el editor de asociada"
+msgstr ""
+
+#: ../admin.php:35
+msgid "URL de la imagen cuando no hay foto"
+msgstr ""
+
+#: ../admin.php:37 ../editar-perfil.php:85
 msgid "Guardar"
+msgstr ""
+
+#: ../editar-perfil.php:66
+msgid "Editor de mi perfil"
+msgstr ""
+
+#: ../editar-perfil.php:67
+msgid "Desconectar"
+msgstr ""
+
+#: ../editar-perfil.php:68
+msgid "Ver mi perfil"
+msgstr ""
+
+#: ../editar-perfil.php:71
+msgid "Nombre"
+msgstr ""
+
+#: ../editar-perfil.php:72
+msgid "Apellidos"
+msgstr ""
+
+#: ../editar-perfil.php:73 ../perfil.php:16
+msgid "Empresa"
+msgstr ""
+
+#: ../editar-perfil.php:74 ../perfil.php:19
+msgid "Sector"
+msgstr ""
+
+#: ../editar-perfil.php:76 ../listado.php:14
+msgid "Selecciona sector"
+msgstr ""
+
+#: ../editar-perfil.php:82
+msgid "Curriculum Vitae"
+msgstr ""
+
+#: ../editar-perfil.php:84
+msgid "Imagen (máximo 2mg)"
+msgstr ""
+
+#: ../listado.php:11
+msgid "Buscar"
+msgstr ""
+
+#: ../listado.php:18
+#, php-format
+msgid "Hemos encontrado <b>%d</b> asociadas."
+msgstr ""
+
+#: ../login.php:11
+msgid "Accede a tu pefíl"
+msgstr ""
+
+#: ../login.php:12
+msgid "En el podrás cambiar actualizar tu perfil de asociada."
+msgstr ""
+
+#: ../login.php:18
+msgid ""
+"Para actualizar tu perfil, comprueba tu correo electrónico porque te hemos "
+"enviado un mensaje con los pasos para poder hacerlo."
+msgstr ""
+
+#: ../login.php:19 ../login.php:20
+msgid ""
+"Email incorrecto. El email suministrado no está en nuestra base de datos."
+msgstr ""
+
+#: ../login.php:21
+msgid "Email incorrecto. El email suministrado no tiene el formato adecuado."
+msgstr ""
+
+#: ../login.php:24
+msgid "Email"
+msgstr ""
+
+#: ../login.php:25
+msgid "tunombre@email.com"
+msgstr ""
+
+#: ../login.php:26
+msgid "Enviar"
+msgstr ""
+
+#: ../login.php:43
+msgid "Aquí puedes actualizar tu perfil de asociada de AED"
+msgstr ""
+
+#: ../perfil.php:14
+msgid "Datos de la asociada"
+msgstr ""
+
+#: ../perfil.php:22
+msgid "Mi CV"
+msgstr ""
+
+#: ../perfil.php:27
+msgid "Emails"
+msgstr ""
+
+#: ../perfil.php:35
+msgid "Teléfono"
 msgstr ""

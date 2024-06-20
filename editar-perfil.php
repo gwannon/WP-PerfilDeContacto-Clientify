@@ -10,20 +10,18 @@ function wp_pcc_login_cookies() {
       if(wp_pcc_user_hash($asociada) == $_GET['wp-pcc-hash']) {
         setcookie("wp_pcc", $_GET['wp-pcc-hash']."|".$_GET['wp-pcc-id'], time() + (24*60*60), "/", $_SERVER['SERVER_NAME']);
         $_COOKIE['wp_pcc'] = $_GET['wp-pcc-hash']."|".$_GET['wp-pcc-id'];
-        wp_redirect(get_the_permalink(WP_AED_ASOCIADA_EDIT_PROFILE_ID));
-        //wp_redirect('https://www.aedbiz.org/perfil-asociadas/');
+        wp_redirect(get_page_link(WP_AED_ASOCIADA_EDIT_PROFILE_ID));
         die;
       }
     }
   } else if(isset($_COOKIE['wp_pcc']) && isset($_GET['logoutAsociadas']) && $_GET['logoutAsociadas'] != '') {
     unset($_COOKIE['wp_pcc']);
     setcookie("wp_pcc", "", time() - (24*60*60), "/", $_SERVER['SERVER_NAME']);
-    wp_redirect(get_the_permalink(WP_AED_ASOCIADA_EDIT_PROFILE_ID)."?hash=".date("YmdHis"));
-    //wp_redirect('https://www.aedbiz.org/perfil-asociadas/'."?hash=".date("YmdHis"));
+    wp_redirect(get_page_link(WP_AED_ASOCIADA_EDIT_PROFILE_ID)."?hash=".date("YmdHis"));
     die;
   }
 }
-add_action('plugins_loaded', 'wp_pcc_login_cookies', 0 );
+add_action('wp_loaded', 'wp_pcc_login_cookies', 0 );
 
 /* wp_pcc_login */
 function wp_pcc_edit_profile($params = array(), $content = null) {
@@ -66,7 +64,6 @@ function wp_pcc_edit_profile($params = array(), $content = null) {
       ?><h1><?php _e("Editor de mi perfil", 'wp-perfil-contacto'); ?></h1>
       <a href="<?=get_the_permalink(WP_AED_ASOCIADA_EDIT_PROFILE_ID);?>?wp-pcc-date=<?=date("YmdHis");?>&logoutAsociadas=Desconectar"><?php _e("Desconectar", 'wp-perfil-contacto'); ?></a> | 
       <a href="<?=wp_pcc_asociada_permalink($asociada);?>?wp-pcc-date=<?=date("YmdHis");?>"><?php _e("Ver mi perfil", 'wp-perfil-contacto'); ?></a>
-      
       <form method="post" enctype="multipart/form-data">
         <label><?php _e("Nombre", 'wp-perfil-contacto'); ?> <input type="text" name="clientify_firstname" autocomplete="off" value="<?=$asociada->getFirstName()?>" required/></label><br/>
         <label><?php _e("Apellidos", 'wp-perfil-contacto'); ?> <input type="text" name="clientify_lastname" autocomplete="off" value="<?=$asociada->getLastName()?>" required/></label><br/>
@@ -80,7 +77,7 @@ function wp_pcc_edit_profile($params = array(), $content = null) {
           <select>
         </label><br/>
         <label><?php _e("Curriculum Vitae", 'wp-perfil-contacto'); ?>
-        <?php wp_editor((isset($mycv['value']) ? $mycv['value'] : ''), "clientify_cv", array( 'media_buttons' => false ) ); ?></label><br/>
+        <?php wp_editor((isset($mycv['value']) ? $mycv['value'] : ''), "clientify_cv", array( 'media_buttons' => false, 'quicktags' => false ) ); ?></label><br/>
         <label><?php _e("Imagen (máximo 2mg)", 'wp-perfil-contacto'); ?> <input name="clientify_picture" max-size="2000" type="file" accept="image/png, image/gif, image/jpeg" /></label>
         <input type="submit" name="updateAsociada" value="<?php _e("Guardar", 'wp-perfil-contacto'); ?>">
       </form>

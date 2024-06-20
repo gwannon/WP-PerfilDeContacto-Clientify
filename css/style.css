@@ -9,6 +9,9 @@
   position: relative;
   border: 1px solid #000;
   padding-top: var(--imagesize);
+}
+
+.asociadas-item.showimage { 
   background: #fff var(--bgimage) center top no-repeat;
   background-size: auto var(--imagesize);
 }
@@ -38,4 +41,9 @@
 .asociadas-item > img {
   box-sizing: border-box;
   width: 100%;
+}
+
+
+.asociadas-grid > div.asociadas-item.showimage  + div.asociadas-item:not(.showimage) {
+  border-color: red;
 }

@@ -17,7 +17,7 @@ function wp_pcc_listado_asociadas_shortcode($params = array(), $content = null) 
   </div>
   <span id="numberresults"><?php printf(__("Hemos encontrado <b>%d</b> asociadas.", 'wp-perfil-contacto'), count((array)$asociadas)); ?></span>
   <div class="asociadas-grid">
-    <?php $counter = 0; foreach ($asociadas as $asociada) { 
+    <?php $counter = 1; foreach ($asociadas as $asociada) { 
       $key = array_search('Asociadas_Empresa', array_column(json_decode(json_encode($asociada->custom_fields), true), 'field'));
       $empresa = (isset($asociada->custom_fields[$key]->field) && $asociada->custom_fields[$key]->field == 'Asociadas_Empresa' && isset($asociada->custom_fields[$key]->value) && $asociada->custom_fields[$key]->value != '' ? $asociada->custom_fields[$key]->value : "");
       $key = array_search('Asociadas_Sector', array_column(json_decode(json_encode($asociada->custom_fields), true), 'field'));
@@ -26,15 +26,16 @@ function wp_pcc_listado_asociadas_shortcode($params = array(), $content = null) 
       $data_search = str_replace("-", " ", sanitize_title($asociada->first_name." ".$asociada->last_name." ".$empresa." ".$sector));
 
       if(isset($asociada->picture_url) && $asociada->picture_url != '') $photo_url = $asociada->picture_url;
-      else $photo_url = WP_AED_NO_PHOTO;
-
-      echo "<div class='asociadas-item sector-".sanitize_title($sector)."' data-search='".$data_search."' style='--bgimage: url(".$photo_url.");'>";
+      //else $photo_url = WP_AED_NO_PHOTO;
+      else $photo_url = "https://dummyimage.com/600x400/000/fff&text=".sanitize_title($asociada->first_name." ".$asociada->last_name);
+      echo "<div class='asociadas-item".($counter <= 8 ? " showimage " : " ")."sector-".sanitize_title($sector)."' data-search='".$data_search."' style=\"--bgimage: url('".$photo_url."');\">";
       
 
       echo "<p><b><a href='".wp_pcc_asociada_permalink($asociada)."/'>".$asociada->first_name." ".$asociada->last_name."</a></b></p>";
       echo "<p>".$empresa."</p>";
       echo "<p>".$sector."</p>";
       echo "</div>";
+      $counter++;
     } ?>
   </div>
   <style>

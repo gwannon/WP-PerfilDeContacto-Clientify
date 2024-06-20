@@ -13,20 +13,24 @@ function wp_pcc_asociada_shortcode($params = array(), $content = null) {
       <?php } ?>
       <h2><?php _e("Datos de la asociada", 'wp-perfil-contacto'); ?></h2><?php
       $company = $asociada->getCustomField('Asociadas_Empresa');
-      echo (isset($company['value']) && $company['value'] != '' ? "<h3>Empresa:</h3> ".$company['value']."<br/>" : "");
+      echo (isset($company['value']) && $company['value'] != '' ? "<h3>".__("Empresa", 'wp-perfil-contacto')."Empresa:</h3> ".$company['value']."<br/>" : "");
+
+      $sector = $asociada->getCustomField('Asociadas_Sector');
+      echo (isset($sector['value']) && $sector['value'] != '' ? "<h3>".__("Sector", 'wp-perfil-contacto').":</h3> ".apply_filters("the_content", $sector['value'])."<br/>" : "");
 
       $cv = $asociada->getCustomField('Asociadas_CV');
-      echo (isset($cv['value']) && $cv['value'] != '' ? "<h3>Mi CV:</h3> ".apply_filters("the_content", $cv['value'])."<br/>" : "");
+      echo (isset($cv['value']) && $cv['value'] != '' ? "<h3>".__("Mi CV", 'wp-perfil-contacto').":</h3> ".apply_filters("the_content", $cv['value'])."<br/>" : "");
 
-      $emails = $asociada->getEmails();
+
+      $emails = $asociada->getEmailsByType(1);
       if(count($emails)) {
           ?><h3><?php _e("Emails", 'wp-perfil-contacto'); ?></h3><ul><?php
           foreach($emails as $email) {
-              echo "<li>".$email->email."</li>";
+            echo "<li>".$email->email."</li>";
           }
           ?></ul><?php 
       }
-      $phones = $asociada->getPhones();
+      $phones = $asociada->getPhonesByType(3);
       if(count($phones)) {
           ?><h3><?php _e("Teléfono", 'wp-perfil-contacto'); ?></h3><ul><?php
           foreach($phones as $phone) {
