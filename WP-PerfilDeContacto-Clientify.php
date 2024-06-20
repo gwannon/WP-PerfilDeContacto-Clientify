@@ -15,6 +15,8 @@
  * WordPress 6.1.1
  */
 
+//flush_rewrite_rules(true);
+
 //Cargamos las librerías de Composer
 require __DIR__ . '/vendor/autoload.php';
 
@@ -23,12 +25,15 @@ define("CLIENTIFY_API_URL", "https://api.clientify.net/v1");
 define("CLIENTIFY_LOG_API_CALLS", false);
 define('CLIENTIFY_API_KEY', get_option("_wp_pcc_clientify_api_key"));
 define('WP_AED_ASOCIADAS_CACHE_FILE', plugin_dir_path(__FILE__).'cache/asociadas.json');
-define('WP_AED_HASH', "EVAMARIASEFUE");
+define('WP_AED_HASH', get_option("_wp_pcc_clientify_hash"));
 define('WP_AED_ASOCIADAS_TAGS', get_option("_wp_pcc_clientify_tag"));
+define('WP_AED_NO_PHOTO', get_option("_wp_pcc_no_photo"));
 
 
 define('WP_AED_ASOCIADA_PAGE_ID', get_option("_wp_pcc_asociada_page_id") /*696*/);
 define('WP_AED_ASOCIADA_EDIT_PROFILE_ID', get_option("_wp_pcc_asociada_edit_profile_id") /*688*/);
+
+$wp_cc_sectores = ["ADMINISTRACIÓN", "ASESORÍA DE EMPRESAS", "ASESORÍA JURÍDICA", "AUTOMOCIÓN", "COACHING", "COMERCIO, MODA, DISEÑO", "COMUNICACIÓN, MARKETING Y PUBLICIDAD", "CONSTRUCCIÓN", "CONSULTORÍA", "DEPORTE OCIO Y SALUD", "DISTRIBUCIÓN", "EDUCACIÓN", "FINANZAS", "FORMACIÓN", "HOSTELERÍA", "INDUSTRIA Y ENERGÍA", "INFORMÁTICA E INTERNET", "INMOBILIARIA", "MARÍTIMO PORTUARIO-COMBUSTIBLES SÓLIDOS-CONSTRUCCIÓN", "OUTPLACEMENT - RRHH", "SALUD Y ESTÉTICA", "SERVICIOS EMPRESARIALES", "SIDEROMETALURGIA", "TRANSPORTE", "SERVICIOS FAMILIARES", "TURISMO", "OTROS"];
 
 //Cargamos resto de script
 require __DIR__ . '/admin.php';

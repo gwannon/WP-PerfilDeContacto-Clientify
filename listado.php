@@ -4,16 +4,15 @@ use Gwannon\PHPClientifyAPI\contactClientify;
 
 //Shortcodes
 function wp_pcc_listado_asociadas_shortcode($params = array(), $content = null) {
+  global $wp_cc_sectores;
   ob_start(); 
   $asociadas = json_decode(file_get_contents(WP_AED_ASOCIADAS_CACHE_FILE)); ?>
   <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
   <input type="text" placeholder="<?php _e('Buscar', 'wp-perfil-contacto'); ?>" class='quicksearch'/>
-
-  <?php $sectores = ["ADMINISTRACIÓN", "ASESORÍA DE EMPRESAS", "ASESORÍA JURÍDICA", "AUTOMOCIÓN", "COACHING", "COMERCIO, MODA, DISEÑO", "COMUNICACIÓN, MARKETING Y PUBLICIDAD", "CONSTRUCCIÓN", "CONSULTORÍA", "DEPORTE OCIO Y SALUD", "DISTRIBUCIÓN", "EDUCACIÓN", "FINANZAS", "FORMACIÓN", "HOSTELERÍA", "INDUSTRIA Y ENERGÍA", "INFORMÁTICA E INTERNET", "INMOBILIARIA", "MARÍTIMO PORTUARIO-COMBUSTIBLES SÓLIDOS-CONSTRUCCIÓN", "OUTPLACEMENT - RRHH", "SALUD Y ESTÉTICA", "SERVICIOS EMPRESARIALES", "SIDEROMETALURGIA", "TRANSPORTE", "SERVICIOS FAMILIARES", "TURISMO", "OTROS"]; ?>
   <div class="filters-button-group">
     <select>
-      <option value="">Selecciona sector</option>
-      <?php foreach ($sectores as $sector) { echo "<option value='sector-".sanitize_title($sector)."'>".$sector."</option>\n"; } ?>
+      <option value=""><?php _e('Selecciona sector', 'wp-perfil-contacto'); ?></option>
+      <?php foreach ($wp_cc_sectores as $sector) { echo "<option value='sector-".sanitize_title($sector)."'>".$sector."</option>\n"; } ?>
     <select>
   </div>
   <span id="numberresults"><?php printf(__("Hemos encontrado <b>%d</b> asociadas.", 'wp-perfil-contacto'), count((array)$asociadas)); ?></span>
@@ -21,16 +20,16 @@ function wp_pcc_listado_asociadas_shortcode($params = array(), $content = null) 
     <?php $counter = 0; foreach ($asociadas as $asociada) { 
       $key = array_search('Asociadas_Empresa', array_column(json_decode(json_encode($asociada->custom_fields), true), 'field'));
       $empresa = (isset($asociada->custom_fields[$key]->field) && $asociada->custom_fields[$key]->field == 'Asociadas_Empresa' && isset($asociada->custom_fields[$key]->value) && $asociada->custom_fields[$key]->value != '' ? $asociada->custom_fields[$key]->value : "");
-      $sector = array_rand($sectores);
-      $sector = $sectores[$sector];
-
+      $key = array_search('Asociadas_Sector', array_column(json_decode(json_encode($asociada->custom_fields), true), 'field'));
+      $sector = (isset($asociada->custom_fields[$key]->field) && $asociada->custom_fields[$key]->field == 'Asociadas_Sector' && isset($asociada->custom_fields[$key]->value) && $asociada->custom_fields[$key]->value != '' ? $asociada->custom_fields[$key]->value : "");
+      
       $data_search = str_replace("-", " ", sanitize_title($asociada->first_name." ".$asociada->last_name." ".$empresa." ".$sector));
 
+      if(isset($asociada->picture_url) && $asociada->picture_url != '') $photo_url = $asociada->picture_url;
+      else $photo_url = WP_AED_NO_PHOTO;
+
+      echo "<div class='asociadas-item sector-".sanitize_title($sector)."' data-search='".$data_search."' style='--bgimage: url(".$photo_url.");'>";
       
-      echo "<div class='asociadas-item sector-".sanitize_title($sector)."' data-search='".$data_search."'>";
-      if(isset($asociada->picture_url) && $asociada->picture_url != '') {
-        echo "<img src='".$asociada->picture_url."' alt='".$asociada->first_name." ".$asociada->last_name."' />";
-      }
 
       echo "<p><b><a href='".wp_pcc_asociada_permalink($asociada)."/'>".$asociada->first_name." ".$asociada->last_name."</a></b></p>";
       echo "<p>".$empresa."</p>";

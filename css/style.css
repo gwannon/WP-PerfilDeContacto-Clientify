@@ -1,4 +1,5 @@
 .asociadas-item { 
+  --imagesize: 300px;
   width: calc(100% - 40px);
   box-sizing: border-box;
   box-shadow: rgb(113, 111, 104) 10px 5px 24px -19px;
@@ -7,6 +8,9 @@
   margin: 20px;
   position: relative;
   border: 1px solid #000;
+  padding-top: var(--imagesize);
+  background: #fff var(--bgimage) center top no-repeat;
+  background-size: auto var(--imagesize);
 }
 
 @media (min-width: 600px) {
