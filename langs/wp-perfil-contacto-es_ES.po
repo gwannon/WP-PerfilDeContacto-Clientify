@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: wp-perfil-contacto\n"
-"POT-Creation-Date: 2024-06-20 10:58+0200\n"
-"PO-Revision-Date: 2024-06-20 12:39+0200\n"
+"POT-Creation-Date: 2024-07-11 14:44+0200\n"
+"PO-Revision-Date: 2024-07-11 14:44+0200\n"
 "Last-Translator: \n"
 "Language-Team: jorge@enutt.net\n"
 "Language: es_ES\n"
@@ -59,47 +59,47 @@ msgstr ""
 msgid "URL de la imagen cuando no hay foto"
 msgstr ""
 
-#: ../admin.php:37 ../editar-perfil.php:85
+#: ../admin.php:37 ../editar-perfil.php:82
 msgid "Guardar"
 msgstr ""
 
-#: ../editar-perfil.php:66
+#: ../editar-perfil.php:64
 msgid "Editor de mi perfil"
 msgstr ""
 
-#: ../editar-perfil.php:67
+#: ../editar-perfil.php:65
 msgid "Desconectar"
 msgstr ""
 
-#: ../editar-perfil.php:68
+#: ../editar-perfil.php:66
 msgid "Ver mi perfil"
 msgstr ""
 
-#: ../editar-perfil.php:71
+#: ../editar-perfil.php:68
 msgid "Nombre"
 msgstr ""
 
-#: ../editar-perfil.php:72
+#: ../editar-perfil.php:69
 msgid "Apellidos"
 msgstr ""
 
-#: ../editar-perfil.php:73 ../perfil.php:16
+#: ../editar-perfil.php:70 ../perfil.php:16
 msgid "Empresa"
 msgstr ""
 
-#: ../editar-perfil.php:74 ../perfil.php:19
+#: ../editar-perfil.php:71 ../perfil.php:19
 msgid "Sector"
 msgstr ""
 
-#: ../editar-perfil.php:76 ../listado.php:14
+#: ../editar-perfil.php:73 ../listado.php:14
 msgid "Selecciona sector"
 msgstr ""
 
-#: ../editar-perfil.php:82
+#: ../editar-perfil.php:79
 msgid "Curriculum Vitae"
 msgstr ""
 
-#: ../editar-perfil.php:84
+#: ../editar-perfil.php:81
 msgid "Imagen (máximo 2mg)"
 msgstr ""
 
@@ -113,7 +113,7 @@ msgid "Hemos encontrado <b>%d</b> asociadas."
 msgstr ""
 
 #: ../login.php:11
-msgid "Accede a tu pefíl"
+msgid "Accede a tu perfíl"
 msgstr ""
 
 #: ../login.php:12
