@@ -12,8 +12,12 @@ function wp_pcc_asociada_shortcode($params = array(), $content = null) {
           <img src="<?=$asociada->getPicture();?>" alt="<?php echo $asociada->getFirstName()." ".$asociada->getLastName(); ?>" width="200" />
       <?php } ?>
       <h2><?php _e("Datos de la asociada", 'wp-perfil-contacto'); ?></h2><?php
+
+      $position = $asociada->getPosition();
+      echo (isset($position) && $position != '' ? "<h3>".__("Cargo", 'wp-perfil-contacto').":</h3> ".$position."<br/>" : "");
+
       $company = $asociada->getCustomField('Asociadas_Empresa');
-      echo (isset($company['value']) && $company['value'] != '' ? "<h3>".__("Empresa", 'wp-perfil-contacto')."Empresa:</h3> ".$company['value']."<br/>" : "");
+      echo (isset($company['value']) && $company['value'] != '' ? "<h3>".__("Empresa", 'wp-perfil-contacto').":</h3> ".$company['value']."<br/>" : "");
 
       $sector = $asociada->getCustomField('Asociadas_Sector');
       echo (isset($sector['value']) && $sector['value'] != '' ? "<h3>".__("Sector", 'wp-perfil-contacto').":</h3> ".apply_filters("the_content", $sector['value'])."<br/>" : "");
@@ -38,6 +42,10 @@ function wp_pcc_asociada_shortcode($params = array(), $content = null) {
           }
           ?></ul><?php 
       }
+
+      $linkedint_url = $asociada->getLinkedinUrl();
+      echo (isset($linkedint_url) && $linkedint_url != '' ? "<h3>".__("Linkedin", 'wp-perfil-contacto').":</h3> <a href='".$linkedint_url."'>".$linkedint_url."</a><br/>" : "");
+
 
   }
   return ob_get_clean();

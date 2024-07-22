@@ -34,21 +34,24 @@ function wp_pcc_edit_profile($params = array(), $content = null) {
       if(isset($_POST['clientify_firstname']) && $_POST['clientify_firstname'] != '') $asociada->setFirstName($_POST['clientify_firstname']);
       if(isset($_POST['clientify_lastname']) && $_POST['clientify_lastname'] != '') $asociada->setLastName($_POST['clientify_lastname']);
       if(isset($_POST['clientify_company']) && $_POST['clientify_company'] != '') $asociada->setCustomField('Asociadas_Empresa', $_POST['clientify_company']);
+      if(isset($_POST['clientify_position']) && $_POST['clientify_position'] != '') $asociada->setPosition($_POST['clientify_position']);
       if(isset($_POST['clientify_cv']) && $_POST['clientify_cv'] != '') $asociada->setCustomField('Asociadas_CV', $_POST['clientify_cv']);
       if(isset($_POST['clientify_sector'])) $asociada->setCustomField('Asociadas_Sector', $_POST['clientify_sector']);
-      $dir_subida = plugin_dir_path(__FILE__).'cache/pictures/';
-      $extension = [
-        "image/jpeg" => ".jpg",
-        "image/png" => ".png",
-        "image/gif" => ".gif",
-      ];
-
-      $file_name = sanitize_title("asociada-".$asociada->id).$extension[$_FILES['clientify_picture']['type']];
-      $fichero_subido = $dir_subida . $file_name ;
-      if (move_uploaded_file($_FILES['clientify_picture']['tmp_name'], $fichero_subido)) {
-        $picture_url = plugin_dir_url(__FILE__).'cache/pictures/'.$file_name;
-        $asociada->setPicture($picture_url);
+      if(isset($_FILES['clientify_picture']['error']) && $_FILES['clientify_picture']['error'] == 0) {
+        $dir_subida = plugin_dir_path(__FILE__).'cache/pictures/';
+        $extension = [
+          "image/jpeg" => ".jpg",
+          "image/png" => ".png",
+          "image/gif" => ".gif",
+        ];
+        $file_name = sanitize_title("asociada-".$asociada->id).$extension[$_FILES['clientify_picture']['type']];
+        $fichero_subido = $dir_subida . $file_name ;
+        if (move_uploaded_file($_FILES['clientify_picture']['tmp_name'], $fichero_subido)) {
+          $picture_url = plugin_dir_url(__FILE__).'cache/pictures/'.$file_name;
+          $asociada->setPicture($picture_url);
+        }
       }
+      if(isset($_POST['clientify_linkedin_url'])/* && $_POST['clientify_linkedin_url'] != ''*/) $asociada->setLinkedinUrl($_POST['clientify_linkedin_url']);
       $asociada->update();
       //if(file_exists($fichero_subido)) unlink($fichero_subido); ?>
       <script>
@@ -58,7 +61,10 @@ function wp_pcc_edit_profile($params = array(), $content = null) {
       </script>
     <?php }
     if(wp_pcc_user_hash($asociada) == $hash) { 
+      //print_r($asociada);
+      $mylinkedin = $asociada->getLinkedinUrl();
       $mycompany = $asociada->getCustomField('Asociadas_Empresa');
+      $myposition = $asociada->getPosition();
       $mysector = $asociada->getCustomField('Asociadas_Sector');
       $mycv = $asociada->getCustomField('Asociadas_CV');
       ?><h1><?php _e("Editor de mi perfil", 'wp-perfil-contacto'); ?></h1>
@@ -68,6 +74,7 @@ function wp_pcc_edit_profile($params = array(), $content = null) {
         <label><?php _e("Nombre", 'wp-perfil-contacto'); ?> <input type="text" name="clientify_firstname" autocomplete="off" value="<?=$asociada->getFirstName()?>" required/></label><br/>
         <label><?php _e("Apellidos", 'wp-perfil-contacto'); ?> <input type="text" name="clientify_lastname" autocomplete="off" value="<?=$asociada->getLastName()?>" required/></label><br/>
         <label><?php _e("Empresa", 'wp-perfil-contacto'); ?> <input type="text" name="clientify_company" autocomplete="off" value="<?=(isset($mycompany['value']) ? $mycompany['value'] : '')?>" required/></label><br/>
+        <label><?php _e("Cargo", 'wp-perfil-contacto'); ?> <input type="text" name="clientify_position" autocomplete="off" value="<?=(isset($myposition) ? $myposition : '')?>" required/></label><br/>
         <label><?php _e("Sector", 'wp-perfil-contacto'); ?>
           <select name="clientify_sector">
             <option value=""><?php _e('Selecciona sector', 'wp-perfil-contacto'); ?></option>
@@ -76,8 +83,11 @@ function wp_pcc_edit_profile($params = array(), $content = null) {
             } ?>
           <select>
         </label><br/>
-        <label><?php _e("Curriculum Vitae", 'wp-perfil-contacto'); ?>
+        <label><?php _e("Sobre mí", 'wp-perfil-contacto'); ?>
         <?php wp_editor((isset($mycv['value']) ? $mycv['value'] : ''), "clientify_cv", array( 'media_buttons' => false, 'quicktags' => false ) ); ?></label><br/>
+        
+        <label><?php _e("Linkedin", 'wp-perfil-contacto'); ?> <input type="text" name="clientify_linkedin_url" autocomplete="off" value="<?=(isset($mylinkedin) ? $mylinkedin : '')?>" /></label><br/>
+        
         <label><?php _e("Imagen (máximo 2mg)", 'wp-perfil-contacto'); ?> <input name="clientify_picture" max-size="2000" type="file" accept="image/png, image/gif, image/jpeg" /></label>
         <input type="submit" name="updateAsociada" value="<?php _e("Guardar", 'wp-perfil-contacto'); ?>">
       </form>
