@@ -37,6 +37,24 @@ function wp_pcc_edit_profile($params = array(), $content = null) {
       if(isset($_POST['clientify_position']) && $_POST['clientify_position'] != '') $asociada->setPosition($_POST['clientify_position']);
       if(isset($_POST['clientify_cv']) && $_POST['clientify_cv'] != '') $asociada->setCustomField('Asociadas_CV', $_POST['clientify_cv']);
       if(isset($_POST['clientify_sector'])) $asociada->setCustomField('Asociadas_Sector', $_POST['clientify_sector']);
+      if(isset($_POST['clientify_public_email'])) $asociada->setCustomField('Asociadas_Emailpublico', $_POST['clientify_public_email']);
+      if(isset($_POST['clientify_public_phone'])) $asociada->setCustomField('Asociadas_Telefonopublico', $_POST['clientify_public_phone']);
+      if(isset($_POST['clientify_website'])) $asociada->setCustomField('Asociadas_Paginaweb', $_POST['clientify_website']);
+      //TODO: Guardar websites
+
+
+      //TODO: Guardas teléfonos
+      /*if(isset($_POST['clientify_email'])) {
+        foreach ($_POST['clientify_email'] as $key => $email) {
+          if($email['id'] == 0 && !$asociada->hasEmail($email['email'])) { //Si es nuevo
+            $asociada->addEmail($email['email'], $email['type']);
+          } else if($email['id'] == -1 && $asociada->hasEmail($email['email'])) { //Si quremos borrarlo
+            $asociada->deleteEmail($email['email']);
+          }
+        }
+      }*/
+
+
       if(isset($_FILES['clientify_picture']['error']) && $_FILES['clientify_picture']['error'] == 0) {
         $dir_subida = plugin_dir_path(__FILE__).'cache/pictures/';
         $extension = [
@@ -61,12 +79,17 @@ function wp_pcc_edit_profile($params = array(), $content = null) {
       </script>
     <?php }
     if(wp_pcc_user_hash($asociada) == $hash) { 
-      //print_r($asociada);
       $mylinkedin = $asociada->getLinkedinUrl();
       $mycompany = $asociada->getCustomField('Asociadas_Empresa');
       $myposition = $asociada->getPosition();
       $mysector = $asociada->getCustomField('Asociadas_Sector');
       $mycv = $asociada->getCustomField('Asociadas_CV');
+      //$mywebsites = $asociada->getWebsitesByType(1); //1 = Corporativa
+      //$myemails = $asociada->getEmailsByType(1); //1 = Corporativa
+      $mypublicemail = $asociada->getCustomField('Asociadas_Emailpublico'); 
+      $mypublicphone = $asociada->getCustomField('Asociadas_Telefonopublico'); 
+      $mywebsite = $asociada->getCustomField('Asociadas_Paginaweb'); 
+
       ?><h1><?php _e("Editor de mi perfil", 'wp-perfil-contacto'); ?></h1>
       <a href="<?=get_the_permalink(WP_AED_ASOCIADA_EDIT_PROFILE_ID);?>?wp-pcc-date=<?=date("YmdHis");?>&logoutAsociadas=Desconectar"><?php _e("Desconectar", 'wp-perfil-contacto'); ?></a> | 
       <a href="<?=wp_pcc_asociada_permalink($asociada);?>?wp-pcc-date=<?=date("YmdHis");?>"><?php _e("Ver mi perfil", 'wp-perfil-contacto'); ?></a>
@@ -86,11 +109,41 @@ function wp_pcc_edit_profile($params = array(), $content = null) {
         <label><?php _e("Sobre mí", 'wp-perfil-contacto'); ?>
         <?php wp_editor((isset($mycv['value']) ? $mycv['value'] : ''), "clientify_cv", array( 'media_buttons' => false, 'quicktags' => false ) ); ?></label><br/>
         
-        <label><?php _e("Linkedin", 'wp-perfil-contacto'); ?> <input type="text" name="clientify_linkedin_url" autocomplete="off" value="<?=(isset($mylinkedin) ? $mylinkedin : '')?>" /></label><br/>
         
+        <?php /* <label><?php _e("Páginas web", 'wp-perfil-contacto'); ?> 
+          <?php foreach ($mywebsites as $key => $website) { ?>
+            <input type="text" name="clientify_website[<?=$key; ?>]" autocomplete="off" value="<?=$website->website; ?>" /></label><br/>
+          <?php } ?>
+          <input type="text" name="clientify_website[<?=($key+1); ?>]" autocomplete="off" value="" />
+        </label><br/> */ ?>
+        
+        
+        <?php /* <label><?php _e("Emails", 'wp-perfil-contacto'); ?> 
+          <?php foreach ($myemails as $key => $email) { ?>
+          <div class="myemail" id="email<?=$email->id; ?>"> 
+            <input type="hidden" name="clientify_email[<?=$key; ?>][id]" value="<?=$email->id; ?>" />
+            <input type="hidden" name="clientify_email[<?=$key; ?>][type]" value="<?=$email->type; ?>" />
+            <input type="text" name="clientify_email[<?=$key; ?>][email]" autocomplete="off" value="<?=$email->email; ?>" />
+            <button><?php _e("Borrar", ''); ?></button>
+          </div>
+          <?php } $key ++; ?>
+          <input type="hidden" name="clientify_email[<?=$key; ?>][id]" value="0" />
+          <input type="hidden" name="clientify_email[<?=$key; ?>][type]" value="1" />
+          <input type="text" name="clientify_email[<?=$key; ?>][email]" autocomplete="off" value="" />
+        </label><br/> */ ?>
+
+
+
+        <label><?php _e("Email público", 'wp-perfil-contacto'); ?> <input type="email" name="clientify_public_email" autocomplete="off" value="<?=(isset($mypublicemail['value']) ? $mypublicemail['value'] : '')?>" /></label><br/>
+        <label><?php _e("Teléfono público", 'wp-perfil-contacto'); ?> <input type="text" name="clientify_public_phone" autocomplete="off" value="<?=(isset($mypublicphone['value']) ? $mypublicphone['value'] : '')?>" /></label><br/>
+        <label><?php _e("Página web", 'wp-perfil-contacto'); ?> <input type="url" name="clientify_website" autocomplete="off" value="<?=(isset($mywebsite['value']) ? $mywebsite['value'] : '')?>" /></label><br/>
+        <label><?php _e("Linkedin", 'wp-perfil-contacto'); ?> <input type="url" name="clientify_linkedin_url" autocomplete="off" value="<?=(isset($mylinkedin) ? $mylinkedin : '')?>" /></label><br/>
         <label><?php _e("Imagen (máximo 2mg)", 'wp-perfil-contacto'); ?> <input name="clientify_picture" max-size="2000" type="file" accept="image/png, image/gif, image/jpeg" /></label>
         <input type="submit" name="updateAsociada" value="<?php _e("Guardar", 'wp-perfil-contacto'); ?>">
       </form>
+      <script>
+
+      <script>
       <?php return ob_get_clean();
     }
   }

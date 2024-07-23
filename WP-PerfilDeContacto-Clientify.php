@@ -58,7 +58,8 @@ function wp_pcc_rewrite_rules(){
 /* ----------- Filters ------------- */
 function wp_pcc_asociada_title( $title, $id = null ) {
   if ( is_page(WP_AED_ASOCIADA_PAGE_ID) && in_the_loop()) {
-    $asociada_id = end(explode("-", get_query_var('asociada')));
+    $temp = explode("-", get_query_var('asociada'));
+    $asociada_id= end($temp); 
     $json = json_decode(file_get_contents(WP_AED_ASOCIADAS_CACHE_FILE), true);
     if(isset($json[$asociada_id])) {
       $asociada = json_decode(json_encode($json[$asociada_id]));
@@ -74,7 +75,8 @@ add_filter( 'template_include', 'wp_pcc_asociada_404', 99 );
 function wp_pcc_asociada_404( $template ) {
   if (is_page(WP_AED_ASOCIADA_PAGE_ID)  ) {
     //Si no existe la oferta error 404
-    $asociada_id = end(explode("-", get_query_var('asociada')));
+    $temp = explode("-", get_query_var('asociada'));
+    $asociada_id= end($temp); 
     
     $json = json_decode(file_get_contents(WP_AED_ASOCIADAS_CACHE_FILE), true);
     if(!isset($json[$asociada_id])) {

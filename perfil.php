@@ -5,7 +5,8 @@ use Gwannon\PHPClientifyAPI\contactClientify;
 //Shortcodes
 function wp_pcc_asociada_shortcode($params = array(), $content = null) {
   ob_start();
-  $asociada_id= end(explode("-", get_query_var('asociada'))); 
+  $temp = explode("-", get_query_var('asociada'));
+  $asociada_id= end($temp); 
   if($asociada_id != '') { $asociada = new contactClientify($asociada_id); ?>
       <h1><?php echo $asociada->getFirstName()." ".$asociada->getLastName(); ?></h1>
       <?php if($asociada->getPicture() != '') { ?>
@@ -26,7 +27,18 @@ function wp_pcc_asociada_shortcode($params = array(), $content = null) {
       echo (isset($cv['value']) && $cv['value'] != '' ? "<h3>".__("Mi CV", 'wp-perfil-contacto').":</h3> ".apply_filters("the_content", $cv['value'])."<br/>" : "");
 
 
-      $emails = $asociada->getEmailsByType(1);
+      $email = $asociada->getCustomField('Asociadas_Emailpublico');
+      echo (isset($email['value']) && $email['value'] != '' ? "<h3>".__("Email", 'wp-perfil-contacto').":</h3> <a href='mailto:".$email['value']."'>".$email['value']."</a><br/>" : "");
+
+      $phone = $asociada->getCustomField('Asociadas_Telefonopublico');
+      echo (isset($phone['value']) && $company['value'] != '' ? "<h3>".__("Teléfono", 'wp-perfil-contacto').":</h3> <a href='tel:".$phone['value']."'>".$phone['value']."</a><br/>" : "");
+
+      $website = $asociada->getCustomField('Asociadas_Paginaweb');
+      echo (isset($company['value']) && $company['value'] != '' ? "<h3>".__("Página web", 'wp-perfil-contacto').":</h3> <a href='".$website['value']."'>".$website['value']."</a><br/>" : "");
+
+
+
+      /*$emails = $asociada->getEmailsByType(1);
       if(count($emails)) {
           ?><h3><?php _e("Emails", 'wp-perfil-contacto'); ?></h3><ul><?php
           foreach($emails as $email) {
@@ -41,7 +53,7 @@ function wp_pcc_asociada_shortcode($params = array(), $content = null) {
               echo "<li>".$phone->phone."</li>";
           }
           ?></ul><?php 
-      }
+      }*/
 
       $linkedint_url = $asociada->getLinkedinUrl();
       echo (isset($linkedint_url) && $linkedint_url != '' ? "<h3>".__("Linkedin", 'wp-perfil-contacto').":</h3> <a href='".$linkedint_url."'>".$linkedint_url."</a><br/>" : "");
