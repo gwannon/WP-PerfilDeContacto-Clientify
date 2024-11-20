@@ -1,49 +1,210 @@
-.asociadas-item { 
-  --imagesize: 300px;
-  width: calc(100% - 40px);
-  box-sizing: border-box;
-  box-shadow: rgb(113, 111, 104) 10px 5px 24px -19px;
-  background-color: white;
-  border-radius: 10px;
-  margin: 20px;
-  position: relative;
-  border: 1px solid #000;
-  padding-top: var(--imagesize);
+#asociadas-filters {
+  background-color: #f4dfe8;
+  padding: 60px 20px 150px 20px;
+  margin: 0 auto -80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
 }
 
-.asociadas-item.showimage { 
-  background: #fff var(--bgimage) center top no-repeat;
-  background-size: auto var(--imagesize);
+@media (min-width: 900px) {
+  #asociadas-filters {
+    flex-direction: row;
+  }
+}
+
+#asociadas-filters > * {
+  margin: 0px;
+}
+
+#asociadas-filters > p {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 100%;
+  color: #ba5b80;
+  font-family: "Roboto Condensed", Helvetica, Arial, Verdana, sans-serif;
+}
+
+#asociadas-filters > span {
+  width: 100%;
+  text-align: center;
+  color: #ba5b80;
+}
+
+#asociadas-filters > input[type=text] {
+  border: 2px solid #ba5b80;
+  color: #ba5b80 !important;
+  font-family: "Roboto Condensed", Helvetica, Arial, Verdana, sans-serif;
+  font-size: 22px;
+  border-radius: 23px !important;
+  background-image: url(/wp-content/plugins/WP-PerfilDeContacto-Clientify/images/glass.png);
+  background-repeat: no-repeat;
+  background-position: calc(100% - 15px) center;
+  background-size: 21px auto;
+  padding-right: 40px;
+  text-align: center;
+  width: 100%;
+  max-width: 350px;
+}
+
+#asociadas-filters > input[type=text]::placeholder {
+  color: #ba5b80 !important;
+}
+
+#asociadas-filters > div > select {
+  border: 2px solid #ba5b80;
+  color: #ba5b80 !important;
+  font-family: "Roboto Condensed", Helvetica, Arial, Verdana, sans-serif;
+  font-size: 22px;
+  border-radius: 23px !important;
+  background-color: #f4dfe8;
+  background-image: url(/wp-content/plugins/WP-PerfilDeContacto-Clientify/images/select.png);
+  background-position: calc(100% - 10px) center;
+  background-size: 30px auto;
+  text-align: center;
+  max-width: 420px;
+  width: 100%;
+}
+
+#asociadas-filters > div > select > option {
+  font-size: 16px;
+}
+
+.asociadas-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.asociadas-item { 
+  width: 100%;
+  padding: 25px 0;
 }
 
 @media (min-width: 600px) {
   .asociadas-item { 
-    width: calc(50% - 40px);
+    width: 50%;
   }
 }
 
 @media (min-width: 900px) {
   .asociadas-item { 
-    width: calc(25% - 40px);
+    width: 25%;
   }
 }
 
-@media (min-width: 1200px) {
-  .asociadas-item { 
-    width: calc(20% - 40px);
-  }
-}
-
-.asociadas-item > * {
-  padding: 10px; 
-}
-
-.asociadas-item > img {
+.asociadas-item > div { 
   box-sizing: border-box;
-  width: 100%;
+  box-shadow: rgb(0 0 0 / 12%) -5px 16px 20px 5px;
+  background-color: white;
+  border-radius: 10px;
+  position: relative;
+  padding: 20px 10px 20px 10px;
+  min-height: 415px;
+  margin: 0 25px 0 25px;
+  text-align: center;
+}
+
+.asociadas-item > div > div {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 5px solid #ba5b80;
+  margin: 0 auto;
+  position: relative;
+  margin-bottom: 15px;
 }
 
 
-.asociadas-grid > div.asociadas-item.showimage  + div.asociadas-item:not(.showimage) {
-  border-color: red;
+.asociadas-item.showimage > div > div { 
+  background: white var(--bgimage) center center no-repeat;
+  background-size: cover;
+}
+
+.asociadas-item > div > div:after {
+  content: "";
+  position: absolute;
+  width: 143px;
+  height: 143px;
+  border-radius: 50%;
+  border: 4px solid white;
+  top: 0px;
+  left: 0px;
+  display: block;
+}
+
+.asociadas-item > div > h3 { 
+  font-family:'Bodoni Moda';
+  font-style:italic;
+  font-weight:900;
+  font-size: 18px;
+  color: #ba5b80 !important;
+  position: relative;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+}
+
+@media (min-width: 900px) {
+  .asociadas-item > div > h3 { 
+    font-size: 24px;
+  }
+}
+
+.asociadas-item > div > h3:after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 3px;
+  bottom: 0px;
+  left: calc(50% - 50px);
+  background-color: #e3a6be;
+}
+
+.asociadas-item > div > p:first-of-type {
+  font-weight: 700;
+}
+
+.asociadas-item > div > p:nth-of-type(2) {
+  font-size: 12px;
+  color: #ba5b80;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.asociadas-item > div > a { 
+  display: inline-block;
+  padding: 5px 10px;
+  text-decoration: none;
+  border: 2px solid #cdcdcd;
+  color: #cdcdcd;
+  transition: background 0.3s;
+  background-color: white;
+  font-weight: 700;
+  margin: 0px 20px 20px 20px;
+}
+
+
+.asociadas-item > div > a:hover { 
+  color: white;
+  background-color: #cdcdcd;
+}
+
+#noresults.show {
+  display: block;
+}
+
+#noresults {
+  background-color: #f4dfe8;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  color: #716f68;
+  font-size: 28px;
+  line-height: 110%;
+  display: none;
+  max-width: 400px;
+  margin: 160px auto 20px;
 }

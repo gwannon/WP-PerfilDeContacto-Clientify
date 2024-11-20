@@ -4,7 +4,11 @@ var selectedSelects = [];
 var iso = jQuery('.asociadas-grid').isotope({
   // options
   itemSelector: '.asociadas-item',
-  layoutMode: 'fitRows',
+  percentPosition: true,
+  masonry: {
+    // use outer width of grid-sizer for columnWidth
+    columnWidth: '.asociadas-item'
+  },
   filter: function() {
     if(qsRegex) {
       if((jQuery(this).text()+jQuery(this).data("search")).match( qsRegex )) {
@@ -64,6 +68,13 @@ jQuery(window).on("resize", function(event){
 function layoutComplete() {
   var totalfiltereds = jQuery('.asociadas-grid').data('isotope').filteredItems.length;
   jQuery("#numberresults > b").text(totalfiltereds);
+
+  if(totalfiltereds == 0) {
+    jQuery("#noresults").addClass("show");
+  } else {
+    jQuery("#noresults").removeClass("show");
+  }
+
 }
 iso.on( 'layoutComplete', layoutComplete );
 
