@@ -16,7 +16,7 @@ function wp_pcc_listado_asociadas_shortcode($params = array(), $content = null) 
       <select>
         <option value=""><?php _e('Búsqueda por sector', 'wp-perfil-contacto'); ?></option>
         <?php foreach ($wp_cc_sectores as $sector) { echo "<option value='sector-".sanitize_title($sector)."'>".$sector."</option>\n"; } ?>
-      <select>
+      </select>
     </div>
     <span id="numberresults"><?php printf(__("Hemos encontrado <b>%d</b> asociadas.", 'wp-perfil-contacto'), count((array)$asociadas)); ?></span>
   </div>

@@ -8,57 +8,169 @@ function wp_pcc_asociada_shortcode($params = array(), $content = null) {
   $temp = explode("-", get_query_var('asociada'));
   $asociada_id= end($temp); 
   if($asociada_id != '') { $asociada = new contactClientify($asociada_id); ?>
-      <h1><?php echo $asociada->getFirstName()." ".$asociada->getLastName(); ?></h1>
-      <?php if($asociada->getPicture() != '') { ?>
-          <img src="<?=$asociada->getPicture();?>" alt="<?php echo $asociada->getFirstName()." ".$asociada->getLastName(); ?>" width="200" />
-      <?php } ?>
-      <h2><?php _e("Datos de la asociada", 'wp-perfil-contacto'); ?></h2><?php
+    <div class="asociada-perfil">
+        <?php if($asociada->getPicture() != '') { ?>
+            <div class="imagen" style="--bgimage: url('<?=$asociada->getPicture();?>');"></div>
+        <?php } ?>
+        <h1><?php echo $asociada->getFirstName()." ".$asociada->getLastName(); ?></h1>
+        <?php
+            $position = $asociada->getPosition();
+            echo (isset($position) && $position != '' ? "<h2>".$position."<h2>" : "");
 
-      $position = $asociada->getPosition();
-      echo (isset($position) && $position != '' ? "<h3>".__("Cargo", 'wp-perfil-contacto').":</h3> ".$position."<br/>" : "");
+            $company = $asociada->getCustomField('Asociadas_Empresa');
+            $sector = $asociada->getCustomField('Asociadas_Sector');
+            echo (isset($company['value']) && $company['value'] != '' ? "<h3>".$company['value']."".(isset($sector['value']) && $sector['value'] != '' ? " (".$sector['value'].")" : "")."</h3>" : "");
+        ?>
+        <hr>
+        <ul>
+            <?php
+                $email = $asociada->getCustomField('Asociadas_Emailpublico');
+                echo (isset($email['value']) && $email['value'] != '' ? "<li><i class='icomoon-the7-font-the7-mail-011'></i> <a href='mailto:".$email['value']."'>".$email['value']."</a></li>" : "");
 
-      $company = $asociada->getCustomField('Asociadas_Empresa');
-      echo (isset($company['value']) && $company['value'] != '' ? "<h3>".__("Empresa", 'wp-perfil-contacto').":</h3> ".$company['value']."<br/>" : "");
+                $phone = $asociada->getCustomField('Asociadas_Telefonopublico');
+                echo (isset($phone['value']) && $company['value'] != '' ? "<li><i class='icomoon-the7-font-the7-phone-01'></i> <a href='tel:".$phone['value']."'>".$phone['value']."</a></li>" : "");
 
-      $sector = $asociada->getCustomField('Asociadas_Sector');
-      echo (isset($sector['value']) && $sector['value'] != '' ? "<h3>".__("Sector", 'wp-perfil-contacto').":</h3> ".apply_filters("the_content", $sector['value'])."<br/>" : "");
+                $website = $asociada->getCustomField('Asociadas_Paginaweb');
+                echo (isset($company['value']) && $company['value'] != '' ? "<li><a href='".$website['value']."'><img class='img-icon' style='width: 1em;' src='".plugin_dir_url(__FILE__)."images/website.png'> ".$website['value']."</a></li>" : "");
 
-      $cv = $asociada->getCustomField('Asociadas_CV');
-      echo (isset($cv['value']) && $cv['value'] != '' ? "<h3>".__("Mi CV", 'wp-perfil-contacto').":</h3> ".apply_filters("the_content", $cv['value'])."<br/>" : "");
+                $linkedint_url = $asociada->getLinkedinUrl();
+                echo (isset($linkedint_url) && $linkedint_url != '' ? "<li><a href='".$linkedint_url."'><img class='img-icon' style='width: 1em;' src='".plugin_dir_url(__FILE__)."images/linkedin.png'></a></li>" : "");
+            ?>
+        </ul>
+        <hr>
+        <?php
 
+            $cv = $asociada->getCustomField('Asociadas_CV');
+            echo (isset($cv['value']) && $cv['value'] != '' ? "<h4>".__("Perfil Profesional", 'wp-perfil-contacto')."</h4> ".apply_filters("the_content", $cv['value']) : "");
 
-      $email = $asociada->getCustomField('Asociadas_Emailpublico');
-      echo (isset($email['value']) && $email['value'] != '' ? "<h3>".__("Email", 'wp-perfil-contacto').":</h3> <a href='mailto:".$email['value']."'>".$email['value']."</a><br/>" : "");
+            //NO USAR ----------------------------
+            /*$emails = $asociada->getEmailsByType(1);
+            if(count($emails)) {
+                ?><h3><?php _e("Emails", 'wp-perfil-contacto'); ?></h3><ul><?php
+                foreach($emails as $email) {
+                echo "<li>".$email->email."</li>";
+                }
+                ?></ul><?php 
+            }
+            $phones = $asociada->getPhonesByType(3);
+            if(count($phones)) {
+                ?><h3><?php _e("Teléfono", 'wp-perfil-contacto'); ?></h3><ul><?php
+                foreach($phones as $phone) {
+                    echo "<li>".$phone->phone."</li>";
+                }
+                ?></ul><?php 
+            }*/
+        ?>
+    </div>
+    <style>
+        .asociada-perfil .imagen {
+            background: white var(--bgimage) center center no-repeat;
+            background-size: cover;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            border: 5px solid #ba5b80;
+            margin: 0;
+            margin-bottom: 40px;
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .asociada-perfil .imagen:after {
+            content: "";
+            position: absolute;
+            width: 233px;
+            height: 233px;
+            border-radius: 50%;
+            border: 4px solid white;
+            top: 0px;
+            left: 0px;
+            display: block;
+        }
 
-      $phone = $asociada->getCustomField('Asociadas_Telefonopublico');
-      echo (isset($phone['value']) && $company['value'] != '' ? "<h3>".__("Teléfono", 'wp-perfil-contacto').":</h3> <a href='tel:".$phone['value']."'>".$phone['value']."</a><br/>" : "");
+        .asociada-perfil h1 {
+            font-family: 'Bodoni Moda';
+            font-style: italic;
+            font-weight: 800;
+            color: #9e3159;
+            font-size: 30px;
+            line-height: 34px;
+            position: relative;
+            padding-bottom: 12px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
 
-      $website = $asociada->getCustomField('Asociadas_Paginaweb');
-      echo (isset($company['value']) && $company['value'] != '' ? "<h3>".__("Página web", 'wp-perfil-contacto').":</h3> <a href='".$website['value']."'>".$website['value']."</a><br/>" : "");
+        .asociada-perfil h1:after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            bottom: 0px;
+            left: 0px;
+            background-color: #e3a6be;
+        }
 
+        .asociada-perfil h2, 
+        .asociada-perfil h3 {
+            text-transform: uppercase;
+            font-family: 'Roboto Condensed';
+            font-weight: 300;
+            color: #333333;
+            margin-top: 10px;
+            font-size: 19px;
+            line-height: 22px;
+        }
+        .asociada-perfil h3 {
+            font-weight: 700;
+            text-transform: none;
+        }
+        .asociada-perfil h4 {
+            font-family: 'Roboto Condensed';
+            font-weight: 500;
+            color: #333333;
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+        .asociada-perfil p,
+        .asociada-perfil li {
+            font-family: 'Roboto Condensed';
+            font-weight: 300;
+            color: #333333;
+            font-size: 18px;
+        }
+        .asociada-perfil hr {
+            border: none;
+            border-top: 1px solid #ebebeb;
+            margin: 40px 0 !important;
+        }
 
+        .asociada-perfil ul {
+            display: flex;
+            gap: 30px;
+            padding: 0px;
+            margin: 0px;
+        }
 
-      /*$emails = $asociada->getEmailsByType(1);
-      if(count($emails)) {
-          ?><h3><?php _e("Emails", 'wp-perfil-contacto'); ?></h3><ul><?php
-          foreach($emails as $email) {
-            echo "<li>".$email->email."</li>";
-          }
-          ?></ul><?php 
-      }
-      $phones = $asociada->getPhonesByType(3);
-      if(count($phones)) {
-          ?><h3><?php _e("Teléfono", 'wp-perfil-contacto'); ?></h3><ul><?php
-          foreach($phones as $phone) {
-              echo "<li>".$phone->phone."</li>";
-          }
-          ?></ul><?php 
-      }*/
+        .asociada-perfil ul li {
+            list-style-type: none;
+        }
 
-      $linkedint_url = $asociada->getLinkedinUrl();
-      echo (isset($linkedint_url) && $linkedint_url != '' ? "<h3>".__("Linkedin", 'wp-perfil-contacto').":</h3> <a href='".$linkedint_url."'>".$linkedint_url."</a><br/>" : "");
+        .asociada-perfil ul li a {
+            text-decoration: none;
+            color: #333333;
+            transition: color 0.3s;
+        }
 
+        .asociada-perfil ul li a:hover {
+            color: #e3a6be;
+        }
 
+        .asociada-perfil ul li i {
+            color: #9e3159;
+        }
+
+    </style>
+    <?php
   }
   return ob_get_clean();
 }
