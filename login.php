@@ -88,14 +88,11 @@ add_shortcode('login-asociadas', 'wp_pcc_login');
 
 function wp_pcc_send_login_email($user, $email) {
   $headers = array(
-    //"From: jorge@enutt.net",
-    //"Reply-To: jorge@enutt.net",
     "X-Mailer: PHP/".phpversion(),
     "Content-type: text/html; charset=utf-8"
   );
   $message = str_replace("[LINK]", get_the_permalink()."?wp-pcc-date=".date("YmdHis")."&wp-pcc-hash=".wp_pcc_user_hash($user)."&wp-pcc-id=".$user->id, file_get_contents(dirname(__FILE__)."/emails/email_login_es.html"));
   $message = str_replace("[URL]", plugin_dir_url(__DIR__), $message);
-  $email = "jorge@enutt.net";
   wp_mail ($email, __("Aquí puedes actualizar tu perfil de asociada de AED", 'wp-perfil-contacto'), $message, $headers);
 }
 

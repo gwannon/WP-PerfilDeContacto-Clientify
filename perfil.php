@@ -22,7 +22,7 @@ function wp_pcc_asociada_shortcode($params = array(), $content = null) {
             echo (isset($company['value']) && $company['value'] != '' ? "<h3>".$company['value']."".(isset($sector['value']) && $sector['value'] != '' ? " (".$sector['value'].")" : "")."</h3>" : "");
         ?>
         <hr>
-        <ul>
+        <ul class="contacto">
             <?php
                 $email = $asociada->getCustomField('Asociadas_Emailpublico');
                 echo (isset($email['value']) && $email['value'] != '' ? "<li><i class='icomoon-the7-font-the7-mail-011'></i> <a href='mailto:".$email['value']."'>".$email['value']."</a></li>" : "");
@@ -144,28 +144,28 @@ function wp_pcc_asociada_shortcode($params = array(), $content = null) {
             margin: 40px 0 !important;
         }
 
-        .asociada-perfil ul {
+        .asociada-perfil ul.contacto {
             display: flex;
             gap: 30px;
             padding: 0px;
             margin: 0px;
         }
 
-        .asociada-perfil ul li {
+        .asociada-perfil ul.contacto li {
             list-style-type: none;
         }
 
-        .asociada-perfil ul li a {
+        .asociada-perfil ul.contacto li a {
             text-decoration: none;
             color: #333333;
             transition: color 0.3s;
         }
 
-        .asociada-perfil ul li a:hover {
+        .asociada-perfil ul.contacto li a:hover {
             color: #e3a6be;
         }
 
-        .asociada-perfil ul li i {
+        .asociada-perfil ul.contacto li i {
             color: #9e3159;
         }
 
