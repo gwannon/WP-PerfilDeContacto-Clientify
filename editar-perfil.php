@@ -190,7 +190,7 @@ function wp_pcc_edit_profile($params = array(), $content = null) {
           font-size: 22px;
           border-radius: 23px !important;
           background-color: #f4dfe8;
-          background-image: url(/wp-content/plugins/WP-PerfilDeContacto-Clientify/images/select.png);
+          background-image: url(<?=plugin_dir_url(__FILE__);?>images/select.png);
           background-position: calc(100% - 10px) center;
           background-size: 30px auto;
           text-align: left;
