@@ -25,6 +25,8 @@ define("CLIENTIFY_API_URL", "https://api.clientify.net/v1");
 define("CLIENTIFY_LOG_API_CALLS", false);
 define('CLIENTIFY_API_KEY', get_option("_wp_pcc_clientify_api_key"));
 define('WP_AED_ASOCIADAS_CACHE_FILE', plugin_dir_path(__FILE__).'cache/asociadas.json');
+define('WP_AED_ASOCIADAS_SITEMAP_FILE', plugin_dir_path(__FILE__).'cache/sitemap_asociadas.xml');
+define('WP_AED_ASOCIADAS_SITEMAP_URL', plugin_dir_url(__FILE__).'cache/sitemap_asociadas.xml');
 define('WP_AED_HASH', get_option("_wp_pcc_clientify_hash"));
 define('WP_AED_ASOCIADAS_TAGS', get_option("_wp_pcc_clientify_tag"));
 define('WP_AED_NO_PHOTO', get_option("_wp_pcc_no_photo"));
@@ -154,10 +156,57 @@ function wp_pcc_asociada_cache() {
       } else break;
     }
     file_put_contents(WP_AED_ASOCIADAS_CACHE_FILE, json_encode($asociadas));
+    wp_pcc_asociada_generate_sitemap($asociadas); //Generamos el sitemap
     echo json_encode($asociadas);
   } else {
     $json = file_get_contents(WP_AED_ASOCIADAS_CACHE_FILE);
-
     echo $json;
   }
 }
+
+//Creamos el sitemap de asociadas
+function wp_pcc_asociada_generate_sitemap($asociadas) {
+  $sitemap = '<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="'.get_home_url().'/wp-content/plugins/wordpress-seo/css/main-sitemap.xsl"?>
+  <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'."\n";
+  foreach ($asociadas as $asociada) {
+    $sitemap .= "\t\t".'<url><loc>'.wp_pcc_asociada_permalink($asociada).'</loc></url>'."\n";
+  }  
+  $sitemap .='</urlset>';
+  file_put_contents(WP_AED_ASOCIADAS_SITEMAP_FILE, $sitemap);
+}
+
+//Metemos su propio sitemap
+add_filter( 'wpseo_sitemap_index', 'wp_pcc_asociada_add_sitemap_custom_items' );
+function  wp_pcc_asociada_add_sitemap_custom_items( $sitemap_custom_items ) {
+  $sitemap_custom_items .= '
+  <sitemap>
+  <loc>'.WP_AED_ASOCIADAS_SITEMAP_URL.'</loc>
+  <lastmod>'.date ("c", filemtime(WP_AED_ASOCIADAS_SITEMAP_FILE)).'</lastmod>
+  </sitemap>';
+  return $sitemap_custom_items;
+}
+
+//Quitamos el NOINDEX NOFOLLOW al eprfil de las asociadas
+
+add_filter('wpseo_robots', 'wp_pcc_asociada_yoast_remove_noindex', 999);
+function wp_pcc_asociada_yoast_remove_noindex($string= "") {
+  if (is_page(WP_AED_ASOCIADA_PAGE_ID) && get_query_var('asociada') != '') {
+    $string= "index,follow";
+  }
+  return $string;
+}
+
+
+
+
+function wp_pcc_asociadas_mapa_shortcode($params = array(), $content = null) {
+  ob_start(); ?>
+  <h2><?php _e("Asociadas", "wp-perfil-contacto"); ?></h2>
+  <ul>
+    <?php $json = json_decode(file_get_contents(WP_AED_ASOCIADAS_CACHE_FILE)); foreach ($json as $asociada) { ?>
+      <li><a href="<?php echo wp_pcc_asociada_permalink($asociada); ?>"><?php printf(__("%s %s", "wp-perfil-contacto"), $asociada->first_name, $asociada->last_name); ?></a></li>
+    <?php } ?>
+  </ul>
+  <?php return ob_get_clean();
+}
+add_shortcode('asociadas-mapa', 'wp_pcc_asociadas_mapa_shortcode');
