@@ -32,7 +32,7 @@ function wp_pcc_edit_profile($params = array(), $content = null) {
     $asociada = new contactClientify($asociada_id);
     if(isset($_POST['updateAsociada']) && $_POST['updateAsociada'] != '') { //Actualziamos el perfil
 
-      ?><p class="okedit"><?php _e("Perfil de asociada actualziado correctamente.", 'wp-perfil-contacto'); ?></p><?php
+      ?><p class="okedit"><?php _e("Perfil de asociada actualizado correctamente.", 'wp-perfil-contacto'); ?></p><?php
 
       if(isset($_POST['clientify_firstname']) && $_POST['clientify_firstname'] != '') $asociada->setFirstName($_POST['clientify_firstname']);
       if(isset($_POST['clientify_lastname']) && $_POST['clientify_lastname'] != '') $asociada->setLastName($_POST['clientify_lastname']);
@@ -198,7 +198,7 @@ function wp_pcc_edit_profile($params = array(), $content = null) {
           font-size: 22px !important;
         }
         .okedit {
-          background-color: green;
+          background-color:rgb(126, 126, 126);
           color: white; 
           padding: 20px; 
           text-align: center;
