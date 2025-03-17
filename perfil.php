@@ -41,7 +41,7 @@ function wp_pcc_asociada_shortcode($params = array(), $content = null) {
         <?php
 
             $cv = $asociada->getCustomField('Asociadas_CV');
-            echo (isset($cv['value']) && $cv['value'] != '' ? "<h4>".__("Perfil Profesional", 'wp-perfil-contacto')."</h4> ".apply_filters("the_content", $cv['value']) : "");
+            echo (isset($cv['value']) && $cv['value'] != '' ? "<h4>".__("Perfil Profesional", 'wp-perfil-contacto')."</h4> ".apply_filters("the_content", stripslashes($cv['value'])) : "");
 
             //NO USAR ----------------------------
             /*$emails = $asociada->getEmailsByType(1);

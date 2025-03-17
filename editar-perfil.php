@@ -38,7 +38,7 @@ function wp_pcc_edit_profile($params = array(), $content = null) {
       if(isset($_POST['clientify_lastname']) && $_POST['clientify_lastname'] != '') $asociada->setLastName($_POST['clientify_lastname']);
       if(isset($_POST['clientify_company']) && $_POST['clientify_company'] != '') $asociada->setCustomField('Asociadas_Empresa', $_POST['clientify_company']);
       if(isset($_POST['clientify_position']) && $_POST['clientify_position'] != '') $asociada->setPosition($_POST['clientify_position']);
-      if(isset($_POST['clientify_cv']) && $_POST['clientify_cv'] != '') $asociada->setCustomField('Asociadas_CV', $_POST['clientify_cv']);
+      if(isset($_POST['clientify_cv']) && $_POST['clientify_cv'] != '') $asociada->setCustomField('Asociadas_CV', stripslashes($_POST['clientify_cv']));
       if(isset($_POST['clientify_sector'])) $asociada->setCustomField('Asociadas_Sector', $_POST['clientify_sector']);
       if(isset($_POST['clientify_public_email'])) $asociada->setCustomField('Asociadas_Emailpublico', $_POST['clientify_public_email']);
       if(isset($_POST['clientify_public_phone'])) $asociada->setCustomField('Asociadas_Telefonopublico', $_POST['clientify_public_phone']);
@@ -108,7 +108,7 @@ function wp_pcc_edit_profile($params = array(), $content = null) {
           </select>
         </label>
         <label><?php _e("Sobre mí", 'wp-perfil-contacto'); ?>
-        <?php wp_editor((isset($mycv['value']) ? $mycv['value'] : ''), "clientify_cv", array( 'media_buttons' => false, 'quicktags' => false ) ); ?></label>
+        <?php wp_editor((isset($mycv['value']) ? stripslashes($mycv['value']) : ''), "clientify_cv", array( 'media_buttons' => false, 'quicktags' => false ) ); ?></label>
         <?php /* <label><?php _e("Páginas web", 'wp-perfil-contacto'); ?> 
           <?php foreach ($mywebsites as $key => $website) { ?>
             <input type="text" name="clientify_website[<?=$key; ?>]" autocomplete="off" value="<?=$website->website; ?>" /></label><br/>
