@@ -28,10 +28,10 @@ function wp_pcc_asociada_shortcode($params = array(), $content = null) {
                 echo (isset($email['value']) && $email['value'] != '' ? "<li><i class='icomoon-the7-font-the7-mail-011'></i> <a href='mailto:".$email['value']."'>".$email['value']."</a></li>" : "");
 
                 $phone = $asociada->getCustomField('Asociadas_Telefonopublico');
-                echo (isset($phone['value']) && $company['value'] != '' ? "<li><i class='icomoon-the7-font-the7-phone-01'></i> <a href='tel:".$phone['value']."'>".$phone['value']."</a></li>" : "");
+                echo (isset($phone['value']) && $phone['value'] != '' ? "<li><i class='icomoon-the7-font-the7-phone-01'></i> <a href='tel:".$phone['value']."'>".$phone['value']."</a></li>" : "");
 
                 $website = $asociada->getCustomField('Asociadas_Paginaweb');
-                echo (isset($company['value']) && $company['value'] != '' ? "<li><a href='".$website['value']."'><img class='img-icon' style='width: 1em;' src='".plugin_dir_url(__FILE__)."images/website.png'> ".$website['value']."</a></li>" : "");
+                echo (isset($website['value']) && $website['value'] != '' ? "<li><a href='".$website['value']."'><img class='img-icon' style='width: 1em;' src='".plugin_dir_url(__FILE__)."images/website.png'> ".$website['value']."</a></li>" : "");
 
                 $linkedint_url = $asociada->getLinkedinUrl();
                 echo (isset($linkedint_url) && $linkedint_url != '' ? "<li><a href='".$linkedint_url."'><img class='img-icon' style='width: 1em;' src='".plugin_dir_url(__FILE__)."images/linkedin.png'></a></li>" : "");
