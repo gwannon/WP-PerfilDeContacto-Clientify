@@ -15,7 +15,7 @@ function wp_pcc_listado_asociadas_shortcode($params = array(), $content = null) 
     <div class="filters-button-group">
       <select>
         <option value=""><?php _e('Búsqueda por sector', 'wp-perfil-contacto'); ?></option>
-        <?php foreach ($wp_cc_sectores as $sector) { echo "<option value='sector-".sanitize_title($sector)."'>".$sector."</option>\n"; } ?>
+        <?php foreach ($wp_cc_sectores as $sector) { echo "<option value='sector-".sanitize_title($sector)."'>".__($sector, 'wp-perfil-contacto')."</option>\n"; } ?>
       </select>
     </div>
     <span id="numberresults"><?php printf(__("Hemos encontrado <b>%d</b> asociadas.", 'wp-perfil-contacto'), count((array)$asociadas)); ?></span>
@@ -37,7 +37,7 @@ function wp_pcc_listado_asociadas_shortcode($params = array(), $content = null) 
 
       echo "<h3>".$asociada->first_name." ".$asociada->last_name."</h3>";
       echo "<p>".$empresa."</p>";
-      echo "<p>".$sector."</p>";
+      echo "<p>".($sector == '--' ? "" : __($sector, 'wp-perfil-contacto'))."</p>";
       echo "<a href='".wp_pcc_asociada_permalink($asociada)."'>".__('Más info', 'wp-perfil-contacto')."</a>";
       echo "</div></div>";
       $counter++;

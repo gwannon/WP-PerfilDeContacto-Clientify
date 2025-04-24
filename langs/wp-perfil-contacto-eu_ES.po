@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: wp-perfil-contacto\n"
-"POT-Creation-Date: 2025-04-24 11:21+0200\n"
-"PO-Revision-Date: 2025-04-24 12:53+0200\n"
+"POT-Creation-Date: 2025-04-24 12:35+0200\n"
+"PO-Revision-Date: 2025-04-24 12:35+0200\n"
 "Last-Translator: \n"
 "Language-Team: jorge@enutt.net\n"
 "Language: es_ES\n"
@@ -15,136 +15,136 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "ADMINISTRACIÓN"
-msgstr ""
+msgstr "ADMINISTRAZIOA"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "ASESORÍA DE EMPRESAS"
-msgstr ""
+msgstr "ENPRESA-AHOLKULARITZA"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "ASESORÍA JURÍDICA"
-msgstr ""
+msgstr "AHOLKULARITZA JURIDIKOA"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "AUTOMOCIÓN"
-msgstr ""
+msgstr "AUTOMOZIOA"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "COACHING"
-msgstr ""
+msgstr "COACHING-A"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "COMERCIO"
-msgstr ""
+msgstr "MERKATARITZA"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "DEPORTE OCIO Y SALUD"
-msgstr ""
+msgstr "KIROLA, AISALDIA ETA OSASUNA"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "EDUCACIÓN"
-msgstr ""
+msgstr "HEZKUNTZA"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "DISTRIBUCIÓN"
-msgstr ""
+msgstr "BANAKETA"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "FINANZAS"
-msgstr ""
+msgstr "FINANTZAK"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "CONSULTORÍA"
-msgstr ""
+msgstr "AHOLKULARITZA"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "CONSTRUCCIÓN"
-msgstr ""
+msgstr "ERAIKUNTZA"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "MARKETING Y PUBLICIDAD"
-msgstr ""
+msgstr "MARKETINA ETA PUBLIZITATEA"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "COMUNICACIÓN"
-msgstr ""
+msgstr "KOMUNIKAZIOA"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "DISEÑO"
-msgstr ""
+msgstr "DISENUA"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "MODA"
-msgstr ""
+msgstr "MODA"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "FORMACIÓN"
-msgstr ""
+msgstr "PRESTAKUNTZA"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "HOSTELERÍA"
-msgstr ""
+msgstr "OSTALARITZA"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "INDUSTRIA Y ENERGÍA"
-msgstr ""
+msgstr "INDUSTRIA ETA ENERGIA"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "INFORMÁTICA E INTERNET"
-msgstr ""
+msgstr "INFORMATIKA ETA INTERNETA"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "OTROS"
-msgstr ""
+msgstr "BESTE BATZUK"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "TURISMO"
-msgstr ""
+msgstr "TURISMOA"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "SERVICIOS FAMILIARES"
-msgstr ""
+msgstr "FAMILIA-ZERBITZUAK"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "TRANSPORTE"
-msgstr ""
+msgstr "GARRAIOA"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "SIDEROMETALURGIA"
-msgstr ""
+msgstr "BURDINMETALEKO INDUSTRIA"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "SALUD Y ESTÉTICA"
-msgstr ""
+msgstr "OSASUNA ETA ESTETIKA"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "SERVICIOS EMPRESARIALES"
-msgstr ""
+msgstr "ENPRESA-ZERBITZUAK"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "OUTPLACEMENT - RRHH"
-msgstr ""
+msgstr "OUTPLACEMENT – GIZA BALIABIDEAK (RRHH)"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "MARÍTIMO PORTUARIO-COMBUSTIBLES SÓLIDOS-CONSTRUCCIÓN"
-msgstr ""
+msgstr "ITSAS-PORTUAK – ERREGAI SOLIDOAK – ERAIKUNTZA"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "INMOBILIARIA"
-msgstr ""
+msgstr "HIGIEZINEN AGENTZIA"
 
-#: ../WP-PerfilDeContacto-Clientify.php:87
+#: ../WP-PerfilDeContacto-Clientify.php:91
 #, php-format
 msgid "Asociada %s %s"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:208
+#: ../WP-PerfilDeContacto-Clientify.php:212
 msgid "Asociadas"
-msgstr ""
+msgstr "Bazkideak"
 
-#: ../WP-PerfilDeContacto-Clientify.php:211
+#: ../WP-PerfilDeContacto-Clientify.php:215
 #, php-format
 msgid "%s %s"
 msgstr ""
@@ -203,11 +203,11 @@ msgstr ""
 
 #: ../editar-perfil.php:98
 msgid "Nombre"
-msgstr ""
+msgstr "Izena"
 
 #: ../editar-perfil.php:99
 msgid "Apellidos"
-msgstr ""
+msgstr "Abizenak"
 
 #: ../editar-perfil.php:100
 msgid "Empresa"
@@ -259,36 +259,36 @@ msgstr ""
 
 #: ../listado.php:13
 msgid "Búsqueda avanzada"
-msgstr ""
+msgstr "Bilaketa aurreratua"
 
 #: ../listado.php:14
 msgid "Búsqueda por palabras"
-msgstr ""
+msgstr "Hitz bidezko bilaketa"
 
 #: ../listado.php:17
 msgid "Búsqueda por sector"
-msgstr ""
+msgstr "Sektorearen araberako bilaketa"
 
 #: ../listado.php:21
 #, php-format
 msgid "Hemos encontrado <b>%d</b> asociadas."
-msgstr ""
+msgstr "<b>%d</b> bazkide aurkitu ditugu."
 
 #: ../listado.php:41
 msgid "Más info"
-msgstr ""
+msgstr "Info gehiago"
 
 #: ../listado.php:48
 msgid "Lo sentimos, no hay asociadas que concidan con su búsqueda."
-msgstr ""
+msgstr "Sentitzen dugu, ez dago bere bilaketarekin bat datorren kiderik."
 
 #: ../login.php:11
 msgid "Accede a tu perfíl"
-msgstr ""
+msgstr "Sartu zure profilean"
 
 #: ../login.php:12
 msgid "En el podrás cambiar actualizar tu perfil de asociada."
-msgstr "En él podrás modificar tu perfil de asociada."
+msgstr "Bertan, bazkide profila eguneratu eta aldatu ahal izango duzu."
 
 #: ../login.php:18
 msgid ""
@@ -307,11 +307,11 @@ msgstr ""
 
 #: ../login.php:24
 msgid "Escribe tu email"
-msgstr ""
+msgstr "Idatzi zure posta elektronikoa"
 
 #: ../login.php:25
 msgid "Enviar"
-msgstr ""
+msgstr "Bidali"
 
 #: ../login.php:96 ../login.php:97
 msgid "Aquí puedes actualizar tu perfil de asociada de AED"

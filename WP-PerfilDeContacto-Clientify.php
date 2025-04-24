@@ -37,12 +37,17 @@ define('WP_AED_ASOCIADA_EDIT_PROFILE_ID', get_option("_wp_pcc_asociada_edit_prof
 
 $wp_cc_sectores = ["ADMINISTRACIÓN", "ASESORÍA DE EMPRESAS", "ASESORÍA JURÍDICA", "AUTOMOCIÓN", "COACHING", "COMERCIO, MODA, DISEÑO", "COMUNICACIÓN, MARKETING Y PUBLICIDAD", "CONSTRUCCIÓN", "CONSULTORÍA", "DEPORTE OCIO Y SALUD", "DISTRIBUCIÓN", "EDUCACIÓN", "FINANZAS", "FORMACIÓN", "HOSTELERÍA", "INDUSTRIA Y ENERGÍA", "INFORMÁTICA E INTERNET", "INMOBILIARIA", "MARÍTIMO PORTUARIO-COMBUSTIBLES SÓLIDOS-CONSTRUCCIÓN", "OUTPLACEMENT - RRHH", "SALUD Y ESTÉTICA", "SERVICIOS EMPRESARIALES", "SIDEROMETALURGIA", "TRANSPORTE", "SERVICIOS FAMILIARES", "TURISMO", "OTROS"];
 
+function wp_pcc_asociada_po_edit() {
+  return [__("ADMINISTRACIÓN", 'wp-perfil-contacto'), __("ASESORÍA DE EMPRESAS",'wp-perfil-contacto'), __("ASESORÍA JURÍDICA",'wp-perfil-contacto'),__("AUTOMOCIÓN",'wp-perfil-contacto'),__("COACHING", 'wp-perfil-contacto'), __("COMERCIO",'wp-perfil-contacto'),__("DEPORTE OCIO Y SALUD", 'wp-perfil-contacto'), __("EDUCACIÓN",'wp-perfil-contacto'),__("DISTRIBUCIÓN", 'wp-perfil-contacto'), __("FINANZAS",'wp-perfil-contacto'),__("CONSULTORÍA", 'wp-perfil-contacto'), __("CONSTRUCCIÓN",'wp-perfil-contacto'),__("MARKETING Y PUBLICIDAD", 'wp-perfil-contacto'), __("COMUNICACIÓN",'wp-perfil-contacto'),__("DISEÑO", 'wp-perfil-contacto'), __("MODA",'wp-perfil-contacto'),__("FORMACIÓN", 'wp-perfil-contacto'), __("HOSTELERÍA",'wp-perfil-contacto'),__("INDUSTRIA Y ENERGÍA", 'wp-perfil-contacto'), __("INFORMÁTICA E INTERNET",'wp-perfil-contacto'),__("OTROS", 'wp-perfil-contacto'), __("TURISMO",'wp-perfil-contacto'),__("SERVICIOS FAMILIARES", 'wp-perfil-contacto'), __("TRANSPORTE",'wp-perfil-contacto'),__("SIDEROMETALURGIA", 'wp-perfil-contacto'), __("SALUD Y ESTÉTICA",'wp-perfil-contacto'),__("SERVICIOS EMPRESARIALES", 'wp-perfil-contacto'), __("OUTPLACEMENT - RRHH",'wp-perfil-contacto'),__("MARÍTIMO PORTUARIO-COMBUSTIBLES SÓLIDOS-CONSTRUCCIÓN", 'wp-perfil-contacto'), __("INMOBILIARIA",'wp-perfil-contacto')];
+}
+
 //Cargamos resto de script
 require __DIR__ . '/admin.php';
 require __DIR__ . '/login.php';
 require __DIR__ . '/editar-perfil.php';
 require __DIR__ . '/listado.php';
 require __DIR__ . '/perfil.php';
+
 
 //Cargamos el multi-idioma
 function wp_pcc_plugins_loaded() {
@@ -201,10 +206,10 @@ function wp_pcc_asociada_yoast_remove_noindex($string= "") {
 
 function wp_pcc_asociadas_mapa_shortcode($params = array(), $content = null) {
   ob_start(); ?>
-  <h2><?php _e("Asociadas", "wp-perfil-contacto"); ?></h2>
+  <h2><?php _e("Asociadas", 'wp-perfil-contacto'); ?></h2>
   <ul>
     <?php $json = json_decode(file_get_contents(WP_AED_ASOCIADAS_CACHE_FILE)); foreach ($json as $asociada) { ?>
-      <li><a href="<?php echo wp_pcc_asociada_permalink($asociada); ?>"><?php printf(__("%s %s", "wp-perfil-contacto"), $asociada->first_name, $asociada->last_name); ?></a></li>
+      <li><a href="<?php echo wp_pcc_asociada_permalink($asociada); ?>"><?php printf(__("%s %s", 'wp-perfil-contacto'), $asociada->first_name, $asociada->last_name); ?></a></li>
     <?php } ?>
   </ul>
   <?php return ob_get_clean();

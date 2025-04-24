@@ -8,8 +8,8 @@ function wp_pcc_login($params = array(), $content = null) {
   ob_start();?>
   <div id="wp-pcc-login">
       <form id="wp-pcc-form-login" method="post">
-        <h2><?php _e("Accede a tu perfíl", "wp-perfil-contacto"); ?></h2>
-        <p><?php _e("En el podrás cambiar actualizar tu perfil de asociada.", "wp-perfil-contacto"); ?></p>
+        <h2><?php _e("Accede a tu perfíl", 'wp-perfil-contacto'); ?></h2>
+        <p><?php _e("En el podrás cambiar actualizar tu perfil de asociada.", 'wp-perfil-contacto'); ?></p>
         <?php if (isset($_REQUEST['wp-pcc-email']) && is_email($_REQUEST['wp-pcc-email'])) {
           if(contactClientify::existsContact($_REQUEST['wp-pcc-email'])) {
             $asociada = new contactClientify($_REQUEST['wp-pcc-email']);
