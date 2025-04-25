@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: wp-perfil-contacto\n"
-"POT-Creation-Date: 2025-04-24 11:21+0200\n"
-"PO-Revision-Date: 2025-04-24 12:53+0200\n"
+"POT-Creation-Date: 2025-04-25 13:43+0200\n"
+"PO-Revision-Date: 2025-04-25 13:43+0200\n"
 "Last-Translator: \n"
 "Language-Team: jorge@enutt.net\n"
 "Language: es_ES\n"
@@ -15,136 +15,124 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:42
 msgid "ADMINISTRACIÓN"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:43
 msgid "ASESORÍA DE EMPRESAS"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:44
 msgid "ASESORÍA JURÍDICA"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:45
 msgid "AUTOMOCIÓN"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:46
 msgid "COACHING"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
-msgid "COMERCIO"
+#: ../WP-PerfilDeContacto-Clientify.php:47
+msgid "COMERCIO, MODA, DISEÑO"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:48
 msgid "DEPORTE OCIO Y SALUD"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:49
 msgid "EDUCACIÓN"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:50
 msgid "DISTRIBUCIÓN"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:51
 msgid "FINANZAS"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:52
 msgid "CONSULTORÍA"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:53
 msgid "CONSTRUCCIÓN"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
-msgid "MARKETING Y PUBLICIDAD"
+#: ../WP-PerfilDeContacto-Clientify.php:54
+msgid "COMUNICACIÓN, MARKETING Y PUBLICIDAD"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
-msgid "COMUNICACIÓN"
-msgstr ""
-
-#: ../WP-PerfilDeContacto-Clientify.php:40
-msgid "DISEÑO"
-msgstr ""
-
-#: ../WP-PerfilDeContacto-Clientify.php:40
-msgid "MODA"
-msgstr ""
-
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:55
 msgid "FORMACIÓN"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:56
 msgid "HOSTELERÍA"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:57
 msgid "INDUSTRIA Y ENERGÍA"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:58
 msgid "INFORMÁTICA E INTERNET"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:59
 msgid "OTROS"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:60
 msgid "TURISMO"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:61
 msgid "SERVICIOS FAMILIARES"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:62
 msgid "TRANSPORTE"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:63
 msgid "SIDEROMETALURGIA"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:64
 msgid "SALUD Y ESTÉTICA"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:65
 msgid "SERVICIOS EMPRESARIALES"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:66
 msgid "OUTPLACEMENT - RRHH"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:67
 msgid "MARÍTIMO PORTUARIO-COMBUSTIBLES SÓLIDOS-CONSTRUCCIÓN"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:40
+#: ../WP-PerfilDeContacto-Clientify.php:68
 msgid "INMOBILIARIA"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:87
+#: ../WP-PerfilDeContacto-Clientify.php:116
 #, php-format
 msgid "Asociada %s %s"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:208
+#: ../WP-PerfilDeContacto-Clientify.php:237
 msgid "Asociadas"
 msgstr ""
 
-#: ../WP-PerfilDeContacto-Clientify.php:211
+#: ../WP-PerfilDeContacto-Clientify.php:240
 #, php-format
 msgid "%s %s"
 msgstr ""

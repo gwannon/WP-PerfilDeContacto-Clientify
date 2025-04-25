@@ -35,10 +35,38 @@ define('WP_AED_NO_PHOTO', get_option("_wp_pcc_no_photo"));
 define('WP_AED_ASOCIADA_PAGE_ID', get_option("_wp_pcc_asociada_page_id") /*696*/);
 define('WP_AED_ASOCIADA_EDIT_PROFILE_ID', get_option("_wp_pcc_asociada_edit_profile_id") /*688*/);
 
-$wp_cc_sectores = ["ADMINISTRACIÓN", "ASESORÍA DE EMPRESAS", "ASESORÍA JURÍDICA", "AUTOMOCIÓN", "COACHING", "COMERCIO, MODA, DISEÑO", "COMUNICACIÓN, MARKETING Y PUBLICIDAD", "CONSTRUCCIÓN", "CONSULTORÍA", "DEPORTE OCIO Y SALUD", "DISTRIBUCIÓN", "EDUCACIÓN", "FINANZAS", "FORMACIÓN", "HOSTELERÍA", "INDUSTRIA Y ENERGÍA", "INFORMÁTICA E INTERNET", "INMOBILIARIA", "MARÍTIMO PORTUARIO-COMBUSTIBLES SÓLIDOS-CONSTRUCCIÓN", "OUTPLACEMENT - RRHH", "SALUD Y ESTÉTICA", "SERVICIOS EMPRESARIALES", "SIDEROMETALURGIA", "TRANSPORTE", "SERVICIOS FAMILIARES", "TURISMO", "OTROS"];
+$wp_cc_sectores = ["ADMINISTRACIÓN", "ASESORÍA DE EMPRESAS", "ASESORÍA JURÍDICA", "AUTOMOCIÓN", "COACHING", "COMERCIO, MODA, DISEÑO", "COMUNICACIÓN, MARKETING Y PUBLICIDAD", "CONSTRUCCIÓN", "CONSULTORÍA", "DEPORTE, OCIO Y SALUD", "DISTRIBUCIÓN", "EDUCACIÓN", "FINANZAS", "FORMACIÓN", "HOSTELERÍA", "INDUSTRIA Y ENERGÍA", "INFORMÁTICA E INTERNET", "INMOBILIARIA", "MARÍTIMO PORTUARIO-COMBUSTIBLES SÓLIDOS-CONSTRUCCIÓN", "OUTPLACEMENT - RRHH", "SALUD Y ESTÉTICA", "SERVICIOS EMPRESARIALES", "SIDEROMETALURGIA", "TRANSPORTE", "SERVICIOS FAMILIARES", "TURISMO", "OTROS"];
 
 function wp_pcc_asociada_po_edit() {
-  return [__("ADMINISTRACIÓN", 'wp-perfil-contacto'), __("ASESORÍA DE EMPRESAS",'wp-perfil-contacto'), __("ASESORÍA JURÍDICA",'wp-perfil-contacto'),__("AUTOMOCIÓN",'wp-perfil-contacto'),__("COACHING", 'wp-perfil-contacto'), __("COMERCIO",'wp-perfil-contacto'),__("DEPORTE OCIO Y SALUD", 'wp-perfil-contacto'), __("EDUCACIÓN",'wp-perfil-contacto'),__("DISTRIBUCIÓN", 'wp-perfil-contacto'), __("FINANZAS",'wp-perfil-contacto'),__("CONSULTORÍA", 'wp-perfil-contacto'), __("CONSTRUCCIÓN",'wp-perfil-contacto'),__("MARKETING Y PUBLICIDAD", 'wp-perfil-contacto'), __("COMUNICACIÓN",'wp-perfil-contacto'),__("DISEÑO", 'wp-perfil-contacto'), __("MODA",'wp-perfil-contacto'),__("FORMACIÓN", 'wp-perfil-contacto'), __("HOSTELERÍA",'wp-perfil-contacto'),__("INDUSTRIA Y ENERGÍA", 'wp-perfil-contacto'), __("INFORMÁTICA E INTERNET",'wp-perfil-contacto'),__("OTROS", 'wp-perfil-contacto'), __("TURISMO",'wp-perfil-contacto'),__("SERVICIOS FAMILIARES", 'wp-perfil-contacto'), __("TRANSPORTE",'wp-perfil-contacto'),__("SIDEROMETALURGIA", 'wp-perfil-contacto'), __("SALUD Y ESTÉTICA",'wp-perfil-contacto'),__("SERVICIOS EMPRESARIALES", 'wp-perfil-contacto'), __("OUTPLACEMENT - RRHH",'wp-perfil-contacto'),__("MARÍTIMO PORTUARIO-COMBUSTIBLES SÓLIDOS-CONSTRUCCIÓN", 'wp-perfil-contacto'), __("INMOBILIARIA",'wp-perfil-contacto')];
+  return [
+    __("ADMINISTRACIÓN", 'wp-perfil-contacto'),
+    __("ASESORÍA DE EMPRESAS", 'wp-perfil-contacto'),
+    __("ASESORÍA JURÍDICA", 'wp-perfil-contacto'),
+    __("AUTOMOCIÓN", 'wp-perfil-contacto'),
+    __("COACHING", 'wp-perfil-contacto'),
+    __("COMERCIO, MODA, DISEÑO", 'wp-perfil-contacto'),
+    __("DEPORTE OCIO Y SALUD", 'wp-perfil-contacto'),
+    __("EDUCACIÓN", 'wp-perfil-contacto'),
+    __("DISTRIBUCIÓN", 'wp-perfil-contacto'),
+    __("FINANZAS", 'wp-perfil-contacto'),
+    __("CONSULTORÍA", 'wp-perfil-contacto'),
+    __("CONSTRUCCIÓN", 'wp-perfil-contacto'),
+    __("COMUNICACIÓN, MARKETING Y PUBLICIDAD", 'wp-perfil-contacto'),
+    __("FORMACIÓN", 'wp-perfil-contacto'),
+    __("HOSTELERÍA", 'wp-perfil-contacto'),
+    __("INDUSTRIA Y ENERGÍA", 'wp-perfil-contacto'),
+    __("INFORMÁTICA E INTERNET", 'wp-perfil-contacto'),
+    __("OTROS", 'wp-perfil-contacto'),
+    __("TURISMO", 'wp-perfil-contacto'),
+    __("SERVICIOS FAMILIARES", 'wp-perfil-contacto'),
+    __("TRANSPORTE", 'wp-perfil-contacto'),
+    __("SIDEROMETALURGIA", 'wp-perfil-contacto'),
+    __("SALUD Y ESTÉTICA", 'wp-perfil-contacto'),
+    __("SERVICIOS EMPRESARIALES", 'wp-perfil-contacto'),
+    __("OUTPLACEMENT - RRHH", 'wp-perfil-contacto'),
+    __("MARÍTIMO PORTUARIO-COMBUSTIBLES SÓLIDOS-CONSTRUCCIÓN", 'wp-perfil-contacto'),
+    __("INMOBILIARIA", 'wp-perfil-contacto')
+  ];
 }
 
 //Cargamos resto de script
