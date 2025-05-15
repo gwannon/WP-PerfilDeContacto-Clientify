@@ -35,8 +35,44 @@ define('WP_AED_NO_PHOTO', get_option("_wp_pcc_no_photo"));
 define('WP_AED_ASOCIADA_PAGE_ID', get_option("_wp_pcc_asociada_page_id") /*696*/);
 define('WP_AED_ASOCIADA_EDIT_PROFILE_ID', get_option("_wp_pcc_asociada_edit_profile_id") /*688*/);
 
-$wp_cc_sectores = ["ADMINISTRACIÓN", "ASESORÍA DE EMPRESAS", "ASESORÍA JURÍDICA", "AUTOMOCIÓN", "COACHING", "COMERCIO, MODA, DISEÑO", "COMUNICACIÓN, MARKETING Y PUBLICIDAD", "CONSTRUCCIÓN", "CONSULTORÍA", "DEPORTE, OCIO Y SALUD", "DISTRIBUCIÓN", "EDUCACIÓN", "FINANZAS", "FORMACIÓN", "HOSTELERÍA", "INDUSTRIA Y ENERGÍA", "INFORMÁTICA E INTERNET", "INMOBILIARIA", "MARÍTIMO PORTUARIO-COMBUSTIBLES SÓLIDOS-CONSTRUCCIÓN", "OUTPLACEMENT - RRHH", "SALUD Y ESTÉTICA", "SERVICIOS EMPRESARIALES", "SIDEROMETALURGIA", "TRANSPORTE", "SERVICIOS FAMILIARES", "TURISMO", "OTROS"];
+$lang = apply_filters( 'wpml_current_language', null );
 
+if ($lang === 'eu') {
+  $wp_cc_sectores = [
+    "ADMINISTRACIÓN",
+    "ASESORÍA JURÍDICA",
+    "CONSULTORÍA",
+    "AUTOMOCIÓN",
+    "DISTRIBUCIÓN",
+    "SIDEROMETALURGIA",
+    "COACHING",
+    "DEPORTE OCIO Y SALUD",
+    "CONSTRUCCIÓN",
+    "SERVICIOS EMPRESARIALES",
+    "ASESORÍA DE EMPRESAS",
+    "FINANZAS",
+    "SERVICIOS FAMILIARES",
+    "INMOBILIARIA",
+    "EDUCACIÓN",
+    "INDUSTRIA Y ENERGÍA",
+    "INFORMÁTICA E INTERNET",
+    "MARÍTIMO PORTUARIO-COMBUSTIBLES SÓLIDOS-CONSTRUCCIÓN",
+    "COMUNICACIÓN, MARKETING Y PUBLICIDAD",
+    "COMERCIO, MODA, DISEÑO",
+    "OUTPLACEMENT - RRHH",
+    "SALUD Y ESTÉTICA",
+    "HOSTELERÍA",
+    "FORMACIÓN",
+    "TRANSPORTE",
+    "TURISMO",
+    "OTROS"
+  ];
+  
+}else{
+
+  $wp_cc_sectores = ["ADMINISTRACIÓN", "ASESORÍA DE EMPRESAS", "ASESORÍA JURÍDICA", "AUTOMOCIÓN", "COACHING", "COMERCIO, MODA, DISEÑO", "COMUNICACIÓN, MARKETING Y PUBLICIDAD", "CONSTRUCCIÓN", "CONSULTORÍA", "DEPORTE, OCIO Y SALUD", "DISTRIBUCIÓN", "EDUCACIÓN", "FINANZAS", "FORMACIÓN", "HOSTELERÍA", "INDUSTRIA Y ENERGÍA", "INFORMÁTICA E INTERNET", "INMOBILIARIA", "MARÍTIMO PORTUARIO-COMBUSTIBLES SÓLIDOS-CONSTRUCCIÓN", "OUTPLACEMENT - RRHH", "SALUD Y ESTÉTICA", "SERVICIOS EMPRESARIALES", "SIDEROMETALURGIA", "TRANSPORTE", "SERVICIOS FAMILIARES", "TURISMO", "OTROS"];
+
+}
 function wp_pcc_asociada_po_edit() {
   return [
     __("ADMINISTRACIÓN", 'wp-perfil-contacto'),
@@ -181,6 +217,7 @@ function wp_pcc_asociada_cache() {
       $response = curl_exec($curl);
       $json = json_decode($response);
       foreach($json->results as $asociada) {
+        if($asociada->picture_url == "") $asociada->modified = '2023-01-01T19:07:23.883868+02:00';
         $asociadas[$asociada->id] = $asociada;
       }
       if(isset($json->next) && $json->next != '') {
@@ -188,13 +225,25 @@ function wp_pcc_asociada_cache() {
         sleep(1);
       } else break;
     }
+
+    usort($asociadas, 'wp_pcc_asociada_sort');
     file_put_contents(WP_AED_ASOCIADAS_CACHE_FILE, json_encode($asociadas));
     wp_pcc_asociada_generate_sitemap($asociadas); //Generamos el sitemap
-    echo json_encode($asociadas);
+    //echo json_encode($asociadas);
   } else {
     $json = file_get_contents(WP_AED_ASOCIADAS_CACHE_FILE);
     echo $json;
   }
+}
+
+function wp_pcc_asociada_sort($a, $b)
+{
+    if (strtotime($a->modified) < strtotime($b->modified))
+        return 1;
+    elseif (strtotime($a->modified) == strtotime($b->modified))
+        return 0;
+    else
+        return -1;
 }
 
 //Creamos el sitemap de asociadas

@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp-perfil-contacto\n"
 "POT-Creation-Date: 2025-04-25 13:45+0200\n"
-"PO-Revision-Date: 2025-04-25 13:45+0200\n"
+"PO-Revision-Date: 2025-05-13 17:09+0200\n"
 "Last-Translator: \n"
 "Language-Team: jorge@enutt.net\n"
-"Language: es_ES\n"
+"Language: eu_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -268,7 +268,9 @@ msgstr "Info gehiago"
 
 #: ../listado.php:48
 msgid "Lo sentimos, no hay asociadas que concidan con su búsqueda."
-msgstr "Sentitzen dugu, ez dago bere bilaketarekin bat datorren kiderik."
+msgstr ""
+"Sentitzen dugu, ez dago zure bilaketaren baldintzak betetzen dituen "
+"bazkiderik."
 
 #: ../login.php:11
 msgid "Accede a tu perfíl"
