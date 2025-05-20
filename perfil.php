@@ -15,7 +15,7 @@ function wp_pcc_asociada_shortcode($params = array(), $content = null) {
         <h1><?php echo $asociada->getFirstName()." ".$asociada->getLastName(); ?></h1>
         <?php
             $position = $asociada->getPosition();
-            echo (isset($position) && $position != '' ? "<h2>".$position."<h2>" : "");
+            echo (isset($position) && $position != '' ? "<h2>".$position."</h2>" : "");
 
             $company = $asociada->getCustomField('Asociadas_Empresa');
             $sector = $asociada->getCustomField('Asociadas_Sector');
