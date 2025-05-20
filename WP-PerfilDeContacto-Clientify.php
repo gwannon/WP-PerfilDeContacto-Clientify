@@ -142,14 +142,15 @@ function wp_pcc_asociada_title( $title, $id = null ) {
 //add_filter( 'the_title', 'wp_pcc_asociada_title', 10, 2 );
 
 add_filter('wpseo_title', 'wp_pcc_asociada_filter_wpseo_title');
-function  wp_pcc_asociada_filter_wpseo_title($title) {
+function  wp_pcc_asociada_filter_wpseo_title($title) { 
   if(is_page(WP_AED_ASOCIADA_PAGE_ID) ) {
     $temp = explode("-", get_query_var('asociada'));
     $asociada_id= end($temp); 
     $json = json_decode(file_get_contents(WP_AED_ASOCIADAS_CACHE_FILE), true);
-    if(isset($json[$asociada_id])) {
-      $asociada = json_decode(json_encode($json[$asociada_id]));
-      return str_replace('[ASOCIADA]', sprintf(__('Asociada %s %s', 'wp-perfil-contacto'), $asociada->first_name, $asociada->last_name), $title);
+    foreach ($json as $asociada) {
+      if(isset($asociada['id']) && $asociada['id'] == $asociada_id) {
+        return str_replace('[ASOCIADA]', sprintf(__('Asociada %s %s', 'wp-perfil-contacto'), $asociada['first_name'], $asociada['last_name']), $title);
+      }
     }
   }
   return $title;
