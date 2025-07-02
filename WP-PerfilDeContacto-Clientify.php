@@ -218,7 +218,15 @@ function wp_pcc_asociada_cache() {
       $response = curl_exec($curl);
       $json = json_decode($response);
       foreach($json->results as $asociada) {
+        $edited_profile = false;
+        foreach($asociada->custom_fields as $fields) {
+          if(($fields->field == 'Asociadas_Sector' || $fields->field == 'Asociadas_CV') && $fields->value != '') {
+            $edited_profile = true;
+          }
+        }
+
         if($asociada->picture_url == "") $asociada->modified = '2023-01-01T19:07:23.883868+02:00';
+        else if(!$edited_profile) $asociada->modified = '2023-01-01T19:07:23.883868+02:00';
         $asociadas[$asociada->id] = $asociada;
       }
       if(isset($json->next) && $json->next != '') {
